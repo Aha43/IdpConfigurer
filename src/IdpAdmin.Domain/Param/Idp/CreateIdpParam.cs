@@ -1,8 +1,7 @@
-﻿namespace IdpAdmin.Domain.Param.Idp
+﻿namespace IdpAdmin.Domain.Param.Idp;
+
+public record class CreateIdpParam
 {
-    public record class CreateIdpParam
-    {
-        public required string Name { get; init; }
-        public required string Uri { get; init; }
-    }
+    public required string Name { get; init; }
+    public required string Uri { get; init; }
 }
