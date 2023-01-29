@@ -1,4 +1,4 @@
-﻿namespace IdpAdmin.Domain.Param
+﻿namespace IdpAdmin.Domain.Param.Idp
 {
     public record class GetIdpsParam
     {
