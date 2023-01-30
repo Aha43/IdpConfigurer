@@ -13,11 +13,7 @@ namespace IdentityModelManager.Business.ViewController
         public IdpsViewController(IIdpApi idpApi) => _idpApi = idpApi;
 
         public async Task LoadAsync() => await LoadAsync(default).ConfigureAwait(false);
-        public async Task LoadAsync(CancellationToken cancellationToken)
-        {
-            var param = new GetIdpsParam();
-            Idps = await _idpApi.ReadIdpsAsync(param, cancellationToken).ConfigureAwait(false);
-        }
+        public async Task LoadAsync(CancellationToken cancellationToken) => Idps = await _idpApi.ReadIdpsAsync(cancellationToken).ConfigureAwait(false);
 
         public async Task CreateIdpAsync(string name, string uri) => await CreateIdpAsync(name, uri, default).ConfigureAwait(false);
         public async Task CreateIdpAsync(string name, string uri, CancellationToken cancellationToken)

@@ -30,7 +30,7 @@ namespace IdentityModelManager.Infrastructure.Memory
             return Task.FromResult(true);
         }
 
-        public Task<IEnumerable<Idp>> ReadIdpsAsync(GetIdpsParam param, CancellationToken cancellationToken) => Task.FromResult(_idps.Values.AsEnumerable());
+        public Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken) => Task.FromResult(_idps.Values.AsEnumerable());
 
         public Task<Idp> UpdateIdpAsync(Idp idp, CancellationToken cancellationToken)
         {
