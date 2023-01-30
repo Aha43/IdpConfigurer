@@ -13,13 +13,13 @@ namespace IdentityModelManager.Infrastructure.Memory
     {
         private readonly Dictionary<string, Idp> _idps = new();
 
-        public Task<Idp> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
+        public Task<IEnumerable<Idp>> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
         {
             if (_idps.ContainsKey(param.Name)) throw new ArgumentException($"Idp named '{param.Name}' exists");
 
             var retVal = new Idp { Name = param.Name, Uri = param.Uri };
             _idps[param.Name] = retVal;
-            return Task.FromResult(retVal);
+            return Task.FromResult(_idps.Values.AsEnumerable());
         }
 
         public Task<bool> DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken)

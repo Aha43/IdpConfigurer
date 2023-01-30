@@ -19,6 +19,13 @@ namespace IdentityModelManager.Business.ViewController
             Idps = await _idpApi.ReadIdpsAsync(param, cancellationToken).ConfigureAwait(false);
         }
 
+        public async Task CreateIdpAsync(string name, string uri) => await CreateIdpAsync(name, uri, default).ConfigureAwait(false);
+        public async Task CreateIdpAsync(string name, string uri, CancellationToken cancellationToken)
+        {
+            var param = new CreateIdpParam { Name = name, Uri = uri };
+            Idps = await _idpApi.CreateIdpAsync(param, cancellationToken).ConfigureAwait(false);
+        }
+
     }
 
 }
