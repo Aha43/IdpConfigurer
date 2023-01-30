@@ -1,4 +1,4 @@
-﻿namespace IdpAdmin.Domain.Param.Idp;
+﻿namespace IdentityModelManager.Domain.Param.Idp;
 
 public record class CreateIdpParam
 {

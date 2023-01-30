@@ -1,4 +1,4 @@
-﻿namespace IdpAdmin.Domain;
+﻿namespace IdentityModelManager.Domain;
 
 public record class Idp
 {
