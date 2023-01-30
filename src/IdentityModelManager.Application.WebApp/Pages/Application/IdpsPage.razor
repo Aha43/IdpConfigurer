@@ -1,3 +1,11 @@
 ﻿@page "/Idps"
 
 <MudText Typo="Typo.h3">Identity Providers</MudText>
+<MudStack>
+    <MudList>
+        @foreach (var idp in ViewController.Idps)
+        {
+            <MudListItem Text="@idp.Name" />
+        }
+    </MudList>
+</MudStack>

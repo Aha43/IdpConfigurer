@@ -1,11 +1,6 @@
 ﻿using IdentityModelManager.Domain;
 using IdentityModelManager.Domain.Param.Idp;
 using IdentityModelManager.Specification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IdentityModelManager.Infrastructure.Memory
 {
@@ -13,13 +8,24 @@ namespace IdentityModelManager.Infrastructure.Memory
     {
         private readonly Dictionary<string, Idp> _idps = new();
 
+        public InMemoryIdpRepository() 
+        {
+            AddIdp(new Idp { Name = "TestIdp1", Uri = "https://TestIdp1" }).
+            AddIdp(new Idp { Name = "TestIdp2", Uri = "https://TestIdp2" });
+        }
+
         public Task<IEnumerable<Idp>> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
         {
-            if (_idps.ContainsKey(param.Name)) throw new ArgumentException($"Idp named '{param.Name}' exists");
-
             var retVal = new Idp { Name = param.Name, Uri = param.Uri };
-            _idps[param.Name] = retVal;
+            AddIdp(retVal);
             return Task.FromResult(_idps.Values.AsEnumerable());
+        }
+
+        private InMemoryIdpRepository AddIdp(Idp idp) 
+        {
+            if (_idps.ContainsKey(idp.Name)) throw new ArgumentException($"Idp named '{idp.Name}' exists");
+            _idps[idp.Name] = idp;
+            return this;
         }
 
         public Task<bool> DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken)
