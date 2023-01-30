@@ -15,8 +15,4 @@
     <ProjectReference Include="..\IdentityModelManager.Business\IdentityModelManager.Business.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\App\" />
-  </ItemGroup>
-
 </Project>
