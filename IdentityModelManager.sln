@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityModelManager.Infras
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityModelManager.Business", "src\IdentityModelManager.Business\IdentityModelManager.Business.csproj", "{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityModelManager.Application.WebApp", "src\IdentityModelManager.Application.WebApp\IdentityModelManager.Application.WebApp.csproj", "{362C42A0-B87D-429C-BA66-7CAACF027E50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362C42A0-B87D-429C-BA66-7CAACF027E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362C42A0-B87D-429C-BA66-7CAACF027E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362C42A0-B87D-429C-BA66-7CAACF027E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362C42A0-B87D-429C-BA66-7CAACF027E50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{C1D9D315-0E09-4EB1-9CC1-CA49063DE61E} = {C8002919-59CC-4B9B-ACEF-8333371B90F5}
 		{5DCEDCA9-A6F9-451F-975F-2DC643745590} = {C8002919-59CC-4B9B-ACEF-8333371B90F5}
 		{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C} = {C8002919-59CC-4B9B-ACEF-8333371B90F5}
+		{362C42A0-B87D-429C-BA66-7CAACF027E50} = {C8002919-59CC-4B9B-ACEF-8333371B90F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {100ABF6B-9F91-4E93-81B9-4E3F79F3B1A7}
