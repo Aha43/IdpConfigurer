@@ -14,11 +14,11 @@ namespace IdentityModelManager.Infrastructure.Memory
             AddIdp(new Idp { Name = "TestIdp2", Uri = "https://TestIdp2" });
         }
 
-        public Task<IEnumerable<Idp>> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
+        public Task<Idp> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
         {
             var retVal = new Idp { Name = param.Name, Uri = param.Uri };
             AddIdp(retVal);
-            return Task.FromResult(_idps.Values.AsEnumerable());
+            return Task.FromResult(retVal);
         }
 
         private InMemoryIdpRepository AddIdp(Idp idp) 
