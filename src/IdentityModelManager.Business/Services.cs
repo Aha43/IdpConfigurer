@@ -15,7 +15,8 @@ namespace IdentityModelManager.Business
 
         private static IServiceCollection AddIdentityModelManagerViewControllers(this IServiceCollection services) 
         {
-            return services.AddSingleton<IdpsViewController>();
+            return services.AddSingleton<IdpViewController>()
+                .AddSingleton<IdpsViewController>();
         }
 
     }

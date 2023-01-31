@@ -1,5 +1,7 @@
 ﻿@page "/Idps"
 
+@using IdentityModelManager.Business;
+
 <MudText Typo="Typo.h3">Identity Providers</MudText>
 <MudStack>
     <MudExpansionPanels>
@@ -14,7 +16,9 @@
     <MudList>
         @foreach (var idp in ViewController.Idps)
         {
-            <MudListItem Text="@idp.Name" />
+            <MudListItem>
+                <MudLink Href="@idp.PageUri()">@idp.Name</MudLink>
+            </MudListItem>
         }
     </MudList>
 </MudStack>
