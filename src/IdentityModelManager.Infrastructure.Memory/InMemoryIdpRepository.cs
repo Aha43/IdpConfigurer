@@ -38,6 +38,12 @@ namespace IdentityModelManager.Infrastructure.Memory
 
         public Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken) => Task.FromResult(_idps.Values.AsEnumerable());
 
+        public Task<Idp> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken)
+        {
+            if (_idps.TryGetValue(param.Name, out Idp? idp)) return Task.FromResult(idp);
+            throw new ArgumentException($"No Idp named '{param.Name}'");
+        }
+
         public Task<Idp> UpdateIdpAsync(Idp idp, CancellationToken cancellationToken)
         {
             if (!_idps.ContainsKey(idp.Name)) throw new ArgumentException($"Idp named '{idp.Name}' does not exists");
@@ -45,7 +51,7 @@ namespace IdentityModelManager.Infrastructure.Memory
             _idps[idp.Name] = idp;
             return Task.FromResult(idp);
         }
-
+        
     }
 
 }
