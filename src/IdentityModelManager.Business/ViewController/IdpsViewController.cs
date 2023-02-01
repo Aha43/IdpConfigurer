@@ -1,8 +1,6 @@
 ﻿using IdentityModelManager.Domain;
 using IdentityModelManager.Domain.Param.Idp;
 using IdentityModelManager.Specification;
-using System.Xml.Linq;
-using System;
 
 namespace IdentityModelManager.Business.ViewController
 {
@@ -10,7 +8,7 @@ namespace IdentityModelManager.Business.ViewController
     {
         private readonly IIdpApi _idpApi;
 
-        private List<Idp> _idps = new();
+        private readonly List<Idp> _idps = new();
 
         public IEnumerable<Idp> Idps => _idps.AsEnumerable();
 
