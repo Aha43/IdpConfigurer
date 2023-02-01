@@ -9,13 +9,22 @@ namespace IdentityModelManager.Business
     {
         public static IServiceCollection AddIdentityModelManagerInMemoryServices(this IServiceCollection services)
         {
-            return services.AddSingleton<IIdpApi, InMemoryIdpRepository>().
-                AddIdentityModelManagerViewControllers();
+            return services
+                .AddApis()
+                .AddIdentityModelManagerViewControllers();
+        }
+
+        private static IServiceCollection AddApis(this IServiceCollection services) 
+        {
+            return services
+                .AddSingleton<IIdpApi, InMemoryIdpRepository>()
+                .AddSingleton<IClientApi, InMemoryClientRepository>();
         }
 
         private static IServiceCollection AddIdentityModelManagerViewControllers(this IServiceCollection services) 
         {
-            return services.AddSingleton<IdpViewController>()
+            return services
+                .AddSingleton<IdpViewController>()
                 .AddSingleton<IdpsViewController>();
         }
 
