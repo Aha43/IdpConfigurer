@@ -7,22 +7,22 @@
 <MudStack>
     <MudText Typo="Typo.h5">@ViewController.Idp?.Name</MudText>
     <MudExpansionPanels>
-        <MudExpansionPanel Text="Add client">
-            <MudStack>
-                <MudTextField @bind-Value="ViewController.NewClientId" Label="Client Id" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                <MudTextField @bind-Value="ViewController.NewClientName" Label="Client Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                <MudButton OnClick="ViewController.CreateClientAsync">Add</MudButton>
-            </MudStack>
-        </MudExpansionPanel>
         <MudExpansionPanel Text="Clients">
-            <MudList>
-                @foreach (var client in ViewController.Clients)
-                {
-                    <MudListItem>
-                        <MudLink Href="@client.PageUri(ViewController.Idp!)">@client.ClientName</MudLink>
-                    </MudListItem>
-                }
-            </MudList>
+            <MudStack>
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NewClientId" Label="Client Id" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudTextField @bind-Value="ViewController.NewClientName" Label="Client Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.CreateClientAsync">Add</MudButton>
+                </MudStack>
+                <MudList>
+                    @foreach (var client in ViewController.Clients)
+                    {
+                        <MudListItem>
+                            <MudLink Href="@client.PageUri(ViewController.Idp!)">@client.ClientName</MudLink>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudStack>
         </MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>
