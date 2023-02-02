@@ -4,4 +4,25 @@
 
 <MudStack>
     <MudText Typo="Typo.h5">@ViewController.Client?.ClientName</MudText>
+    <MudExpansionPanels>
+        <MudExpansionPanel Text="Redirect Uris">
+            <MudStack>
+                <MudStack Row="true">
+                    <MudTextField @bind-Value="ViewController.NewRedirectUri" Label="Redirect Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.AddRedirectUriAsync">Add</MudButton>
+                </MudStack>
+                <MudList>
+                    @if (ViewController.Client != null)
+                    {
+                        foreach (var uri in ViewController.Client.RedirectUris)
+                        {
+                            <MudListItem>
+                                <MudText>@uri</MudText>
+                            </MudListItem>
+                        }
+                    }
+                </MudList>
+            </MudStack>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
 </MudStack>

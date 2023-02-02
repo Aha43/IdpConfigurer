@@ -49,13 +49,13 @@ namespace IdentityModelManager.Infrastructure.Memory
             return Task.FromResult(retValues);
         }
 
-        public Task<Client> UpdateClientAsync(Client client, CancellationToken cancellationToken)
+        public Task<Client> UpdateClientAsync(UpdateClientParam param, CancellationToken cancellationToken)
         {
-            var key = new ClientKey(client);
+            var key = new ClientKey(param.IdpName, param.Client.ClientId!);
             if (_clients.ContainsKey(key)) 
             {
-                _clients[key] = client;
-                return Task.FromResult(client);
+                _clients[key] = param.Client;
+                return Task.FromResult(param.Client);
             }
 
             throw new ArgumentException($"Client does not exist for key: '{key}'");
@@ -67,6 +67,12 @@ namespace IdentityModelManager.Infrastructure.Memory
     {
         public string IdpName { get; private set; }
         public string ClientId { get; private set; }
+
+        public ClientKey(string idpName, string clientId)
+        {
+            IdpName = idpName;
+            ClientId = clientId;
+        }
 
         public ClientKey(dynamic o)
         {
