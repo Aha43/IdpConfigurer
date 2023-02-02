@@ -1,4 +1,4 @@
-using IdentityModelManager.Business.ViewController;
+using IdpConfigurer.Business.ViewController;
 using Microsoft.AspNetCore.Components;
 
 namespace IdentityModelManager.Application.WebApp.Pages.Application

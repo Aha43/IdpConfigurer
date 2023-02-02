@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IdentityModelManager.Business\IdentityModelManager.Business.csproj" />
+    <ProjectReference Include="..\IdpConfigurer.Business\IdpConfigurer.Business.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using IdentityModelManager.Domain;
+using IdpConfigurer.Business;
 
-namespace IdentityModelManager.Business.ViewModel;
+namespace IdpConfigurer.Business.ViewModel;
 
 public record class SelectedApiScope
 {

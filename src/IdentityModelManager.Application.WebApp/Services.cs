@@ -1,4 +1,4 @@
-﻿using IdentityModelManager.Business;
+﻿using IdpConfigurer.Business;
 
 namespace IdentityModelManager.Application.WebApp;
 

@@ -1,9 +1,9 @@
-﻿using IdentityModelManager.Business.ViewController;
-using IdentityModelManager.Infrastructure.Memory;
+﻿using IdentityModelManager.Infrastructure.Memory;
 using IdentityModelManager.Specification;
+using IdpConfigurer.Business.ViewController;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IdentityModelManager.Business;
+namespace IdpConfigurer.Business;
 
 public static class Services
 {
@@ -14,7 +14,7 @@ public static class Services
             .AddViewControllers();
     }
 
-    private static IServiceCollection AddApis(this IServiceCollection services) 
+    private static IServiceCollection AddApis(this IServiceCollection services)
     {
         return services
             .AddSingleton<IIdpApi, InMemoryIdpRepository>()
@@ -22,7 +22,7 @@ public static class Services
             .AddSingleton<IApiScopeApi, InMemoryApiScopeApi>();
     }
 
-    private static IServiceCollection AddViewControllers(this IServiceCollection services) 
+    private static IServiceCollection AddViewControllers(this IServiceCollection services)
     {
         return services
             .AddSingleton<IdpViewController>()

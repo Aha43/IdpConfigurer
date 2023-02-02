@@ -4,7 +4,7 @@ using IdentityModelManager.Domain.Param.Client;
 using IdentityModelManager.Domain.Param.Idp;
 using IdentityModelManager.Specification;
 
-namespace IdentityModelManager.Business.ViewController
+namespace IdpConfigurer.Business.ViewController
 {
     public class IdpViewController
     {
@@ -48,8 +48,8 @@ namespace IdentityModelManager.Business.ViewController
         public async Task CreateClientAsync() => await CreateClientAsync(default).ConfigureAwait(true);
         public async Task CreateClientAsync(CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(NewClientId) && !string.IsNullOrEmpty(NewClientName) && Idp != null) 
-            { 
+            if (!string.IsNullOrEmpty(NewClientId) && !string.IsNullOrEmpty(NewClientName) && Idp != null)
+            {
                 var param = new CreateClientParam { ClientName = NewClientName, ClientId = NewClientId, IdpName = Idp.Name };
                 var client = await _clientApi.CreateClientAsync(param, cancellationToken).ConfigureAwait(true);
                 _clients.Add(client);

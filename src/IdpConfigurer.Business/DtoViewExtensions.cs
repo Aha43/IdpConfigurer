@@ -1,6 +1,6 @@
 ﻿using IdentityModelManager.Domain;
 
-namespace IdentityModelManager.Business;
+namespace IdpConfigurer.Business;
 
 public static class DtoViewExtensions
 {

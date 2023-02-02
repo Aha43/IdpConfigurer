@@ -2,7 +2,7 @@
 using IdentityModelManager.Domain.Param.Idp;
 using IdentityModelManager.Specification;
 
-namespace IdentityModelManager.Business.ViewController
+namespace IdpConfigurer.Business.ViewController
 {
     public class IdpsViewController
     {

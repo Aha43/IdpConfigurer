@@ -1,10 +1,10 @@
-﻿using IdentityModelManager.Business.ViewModel;
-using IdentityModelManager.Domain;
+﻿using IdentityModelManager.Domain;
 using IdentityModelManager.Domain.Param.ApiScope;
 using IdentityModelManager.Domain.Param.Client;
 using IdentityModelManager.Specification;
+using IdpConfigurer.Business.ViewModel;
 
-namespace IdentityModelManager.Business.ViewController
+namespace IdpConfigurer.Business.ViewController
 {
     public class ClientViewController
     {
@@ -29,7 +29,7 @@ namespace IdentityModelManager.Business.ViewController
         public async Task LoadAsync(string idpName, string clientId, CancellationToken cancellationToken)
         {
             IdpName = idpName;
-            
+
             var readClientParam = new ReadClientParam { IdpName = idpName, ClientId = clientId };
             Client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
 
@@ -44,10 +44,10 @@ namespace IdentityModelManager.Business.ViewController
         public async Task AddRedirectUriAsync() => await AddRedirectUriAsync(default).ConfigureAwait(false);
         public async Task AddRedirectUriAsync(CancellationToken cancellationToken)
         {
-            if (Client != null && !string.IsNullOrEmpty(NewRedirectUri)) 
+            if (Client != null && !string.IsNullOrEmpty(NewRedirectUri))
             {
                 NewRedirectUri = NewRedirectUri.Trim();
-                if (!Client.RedirectUris.Contains(NewRedirectUri)) 
+                if (!Client.RedirectUris.Contains(NewRedirectUri))
                 {
                     Client.RedirectUris.Add(NewRedirectUri);
                     await UpdateClient(cancellationToken).ConfigureAwait(false);
