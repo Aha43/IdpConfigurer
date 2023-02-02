@@ -24,6 +24,23 @@
                 </MudList>
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="APIs">
+            <MudStack>
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NewApiScopeName" Label="API Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudTextField @bind-Value="ViewController.NewApiScopeDisplayName" Label="Display name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.CreateApiScope">Add</MudButton>
+                </MudStack>
+                <MudList>
+                    @foreach (var api in ViewController.ApiScopes)
+                    {
+                        <MudListItem>
+                            <MudLink Href="@api.PageUri(ViewController.Idp!)">@api.Title()</MudLink>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudStack>
+        </MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>
 
