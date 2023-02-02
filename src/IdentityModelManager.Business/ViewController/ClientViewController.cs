@@ -1,4 +1,6 @@
-﻿using IdentityModelManager.Domain;
+﻿using IdentityModelManager.Business.ViewModel;
+using IdentityModelManager.Domain;
+using IdentityModelManager.Domain.Param.ApiScope;
 using IdentityModelManager.Domain.Param.Client;
 using IdentityModelManager.Specification;
 
@@ -7,19 +9,33 @@ namespace IdentityModelManager.Business.ViewController
     public class ClientViewController
     {
         private readonly IClientApi _clientApi;
+        private readonly IApiScopeApi _apiScopeApi;
 
         public string? IdpName { get; private set; }
 
         public Client? Client { get; private set; }
 
-        public ClientViewController(IClientApi clientApi) => _clientApi = clientApi;
+        public IEnumerable<SelectedApiScope> SelectedApiScopes { get; private set; } = Enumerable.Empty<SelectedApiScope>();
+
+        public ClientViewController(
+            IClientApi clientApi,
+            IApiScopeApi apiScopeApi)
+        {
+            _clientApi = clientApi;
+            _apiScopeApi = apiScopeApi;
+        }
 
         public async Task LoadAsync(string idpName, string clientId) => await LoadAsync(idpName, clientId, default).ConfigureAwait(false);
         public async Task LoadAsync(string idpName, string clientId, CancellationToken cancellationToken)
         {
             IdpName = idpName;
-            var param = new ReadClientParam { IdpName = idpName, ClientId = clientId };
-            Client = await _clientApi.ReadClientAsync(param, cancellationToken).ConfigureAwait(false);
+            
+            var readClientParam = new ReadClientParam { IdpName = idpName, ClientId = clientId };
+            Client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
+
+            var readApiScopesParam = new ReadApiScopesParam { IdpName = idpName };
+            var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
+            SelectedApiScopes = apis.Select(e => new SelectedApiScope { ApiScope = e });
         }
 
         #region redirectUris

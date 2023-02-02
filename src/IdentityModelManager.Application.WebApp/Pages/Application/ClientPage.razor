@@ -24,5 +24,15 @@
                 </MudList>
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="APIs">
+            <MudList>
+                @foreach (var apiScope in ViewController.SelectedApiScopes)
+                {
+                    <MudListItem>
+                        <MudCheckBox @bind-Checked="@apiScope.Selected" Label="@apiScope.Title"></MudCheckBox>
+                    </MudListItem>
+                }
+            </MudList>
+        </MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>
