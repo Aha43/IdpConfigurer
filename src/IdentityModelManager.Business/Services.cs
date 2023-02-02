@@ -18,7 +18,8 @@ public static class Services
     {
         return services
             .AddSingleton<IIdpApi, InMemoryIdpRepository>()
-            .AddSingleton<IClientApi, InMemoryClientRepository>();
+            .AddSingleton<IClientApi, InMemoryClientRepository>()
+            .AddSingleton<IApiScopeApi, InMemoryApiScopeApi>();
     }
 
     private static IServiceCollection AddViewControllers(this IServiceCollection services) 
