@@ -1,6 +1,6 @@
 ﻿using IdentityModelManager.Infrastructure.Memory;
-using IdentityModelManager.Specification;
 using IdpConfigurer.Business.ViewController;
+using IdpConfigurer.Specification;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IdpConfigurer.Business;

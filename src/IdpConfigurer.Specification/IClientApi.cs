@@ -1,7 +1,7 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.Client;
 
-namespace IdentityModelManager.Specification;
+namespace IdpConfigurer.Specification;
 
 public interface IClientApi
 {

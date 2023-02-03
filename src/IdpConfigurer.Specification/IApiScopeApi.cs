@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdentityModelManager.Specification;
+namespace IdpConfigurer.Specification;
 
 public interface IApiScopeApi
 {

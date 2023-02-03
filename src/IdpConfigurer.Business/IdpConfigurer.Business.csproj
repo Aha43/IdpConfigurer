@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IdentityModelManager.Infrastructure.Memory\IdentityModelManager.Infrastructure.Memory.csproj" />
-    <ProjectReference Include="..\IdentityModelManager.Specification\IdentityModelManager.Specification.csproj" />
     <ProjectReference Include="..\IdpConfigurer.Domain\IdpConfigurer.Domain.csproj" />
+    <ProjectReference Include="..\IdpConfigurer.Specification\IdpConfigurer.Specification.csproj" />
   </ItemGroup>
 
 </Project>
