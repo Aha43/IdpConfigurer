@@ -1,6 +1,6 @@
-﻿using IdentityModelManager.Domain;
-using IdentityModelManager.Domain.Param.ApiScope;
-using IdentityModelManager.Specification;
+﻿using IdentityModelManager.Specification;
+using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.ApiScope;
 
 namespace IdentityModelManager.Infrastructure.Memory;
 

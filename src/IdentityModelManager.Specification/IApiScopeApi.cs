@@ -1,5 +1,5 @@
-﻿using IdentityModelManager.Domain;
-using IdentityModelManager.Domain.Param.ApiScope;
+﻿using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.ApiScope;
 using System;
 using System.Collections.Generic;
 using System.Linq;

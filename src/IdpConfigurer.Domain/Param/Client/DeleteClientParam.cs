@@ -1,6 +1,6 @@
-﻿namespace IdentityModelManager.Domain.Param.Client;
+﻿namespace IdpConfigurer.Domain.Param.Client;
 
-public record class ReadClientParam
+public record class DeleteClientParam
 {
     public required string IdpName { get; init; }
     public required string ClientId { get; init; }

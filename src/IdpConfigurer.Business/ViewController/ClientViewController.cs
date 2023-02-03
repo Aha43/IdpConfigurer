@@ -1,8 +1,8 @@
-﻿using IdentityModelManager.Domain;
-using IdentityModelManager.Domain.Param.ApiScope;
-using IdentityModelManager.Domain.Param.Client;
-using IdentityModelManager.Specification;
+﻿using IdentityModelManager.Specification;
 using IdpConfigurer.Business.ViewModel;
+using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.ApiScope;
+using IdpConfigurer.Domain.Param.Client;
 
 namespace IdpConfigurer.Business.ViewController
 {

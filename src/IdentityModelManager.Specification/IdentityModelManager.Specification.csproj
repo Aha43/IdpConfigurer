@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IdentityModelManager.Domain\IdentityModelManager.Domain.csproj" />
+    <ProjectReference Include="..\IdpConfigurer.Domain\IdpConfigurer.Domain.csproj" />
   </ItemGroup>
 
 </Project>

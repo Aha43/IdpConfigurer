@@ -1,6 +1,6 @@
-﻿using IdentityModelManager.Domain;
-using IdentityModelManager.Domain.Param.Idp;
-using IdentityModelManager.Specification;
+﻿using IdentityModelManager.Specification;
+using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.Idp;
 
 namespace IdentityModelManager.Infrastructure.Memory
 {

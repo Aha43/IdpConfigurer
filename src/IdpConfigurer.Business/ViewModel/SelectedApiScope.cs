@@ -1,5 +1,5 @@
-﻿using IdentityModelManager.Domain;
-using IdpConfigurer.Business;
+﻿using IdpConfigurer.Business;
+using IdpConfigurer.Domain;
 
 namespace IdpConfigurer.Business.ViewModel;
 

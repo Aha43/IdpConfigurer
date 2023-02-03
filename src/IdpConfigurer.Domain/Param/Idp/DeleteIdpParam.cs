@@ -1,4 +1,4 @@
-﻿namespace IdentityModelManager.Domain.Param.Idp;
+﻿namespace IdpConfigurer.Domain.Param.Idp;
 
 public record class DeleteIdpParam
 {

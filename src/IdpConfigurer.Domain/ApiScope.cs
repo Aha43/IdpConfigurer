@@ -1,4 +1,4 @@
-﻿namespace IdentityModelManager.Domain;
+﻿namespace IdpConfigurer.Domain;
 
 public record class ApiScope
 {

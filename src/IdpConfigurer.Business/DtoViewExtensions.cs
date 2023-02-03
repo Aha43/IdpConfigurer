@@ -1,4 +1,4 @@
-﻿using IdentityModelManager.Domain;
+﻿using IdpConfigurer.Domain;
 
 namespace IdpConfigurer.Business;
 

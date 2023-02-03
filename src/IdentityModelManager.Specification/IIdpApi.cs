@@ -1,5 +1,5 @@
-﻿using IdentityModelManager.Domain;
-using IdentityModelManager.Domain.Param.Idp;
+﻿using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.Idp;
 
 namespace IdentityModelManager.Specification;
 

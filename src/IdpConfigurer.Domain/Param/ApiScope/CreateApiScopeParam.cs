@@ -1,4 +1,4 @@
-﻿namespace IdentityModelManager.Domain.Param.ApiScope;
+﻿namespace IdpConfigurer.Domain.Param.ApiScope;
 
 public class CreateApiScopeParam
 {

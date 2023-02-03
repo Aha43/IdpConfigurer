@@ -1,4 +1,4 @@
-﻿namespace IdentityModelManager.Domain.Param.Client;
+﻿namespace IdpConfigurer.Domain.Param.Client;
 
 public record class CreateClientParam
 {
