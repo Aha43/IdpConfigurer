@@ -1,0 +1,46 @@
+﻿@page "/Idp/{IdpName}"
+
+@using IdpConfigurer.Business;
+
+<MudText Typo="Typo.h3">Identity Provider</MudText>
+
+<MudStack>
+    <MudText Typo="Typo.h5">@ViewController.Idp?.Name</MudText>
+    <MudExpansionPanels>
+        <MudExpansionPanel Text="Clients">
+            <MudStack>
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NewClientId" Label="Client Id" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudTextField @bind-Value="ViewController.NewClientName" Label="Client Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.CreateClientAsync">Add</MudButton>
+                </MudStack>
+                <MudList>
+                    @foreach (var client in ViewController.Clients)
+                    {
+                        <MudListItem>
+                            <MudLink Href="@client.PageUri(ViewController.Idp!)">@client.ClientName</MudLink>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudStack>
+        </MudExpansionPanel>
+        <MudExpansionPanel Text="APIs">
+            <MudStack>
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NewApiScopeName" Label="API Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudTextField @bind-Value="ViewController.NewApiScopeDisplayName" Label="Display name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.CreateApiScope">Add</MudButton>
+                </MudStack>
+                <MudList>
+                    @foreach (var api in ViewController.ApiScopes)
+                    {
+                        <MudListItem>
+                            <MudLink Href="@api.PageUri(ViewController.Idp!)">@api.Title()</MudLink>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudStack>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+</MudStack>
+

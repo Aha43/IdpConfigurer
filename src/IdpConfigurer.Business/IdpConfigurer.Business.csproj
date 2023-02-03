@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<WarningsAsErrors>Nullable</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdpConfigurer.Domain\IdpConfigurer.Domain.csproj" />
+    <ProjectReference Include="..\IdpConfigurer.Infrastructure.Memory\IdpConfigurer.Infrastructure.Memory.csproj" />
+    <ProjectReference Include="..\IdpConfigurer.Specification\IdpConfigurer.Specification.csproj" />
+  </ItemGroup>
+
+</Project>
