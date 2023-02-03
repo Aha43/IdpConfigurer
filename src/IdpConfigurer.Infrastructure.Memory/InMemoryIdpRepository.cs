@@ -2,13 +2,13 @@
 using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Specification;
 
-namespace IdentityModelManager.Infrastructure.Memory
+namespace IdpConfigurer.Infrastructure.Memory
 {
     public class InMemoryIdpRepository : IIdpApi
     {
         private readonly Dictionary<string, Idp> _idps = new();
 
-        public InMemoryIdpRepository() 
+        public InMemoryIdpRepository()
         {
             AddIdp(new Idp { Name = "TestIdp1", Uri = "https://TestIdp1" }).
             AddIdp(new Idp { Name = "TestIdp2", Uri = "https://TestIdp2" });
@@ -21,7 +21,7 @@ namespace IdentityModelManager.Infrastructure.Memory
             return Task.FromResult(retVal);
         }
 
-        private InMemoryIdpRepository AddIdp(Idp idp) 
+        private InMemoryIdpRepository AddIdp(Idp idp)
         {
             if (_idps.ContainsKey(idp.Name)) throw new ArgumentException($"Idp named '{idp.Name}' exists");
             _idps[idp.Name] = idp;
@@ -51,7 +51,7 @@ namespace IdentityModelManager.Infrastructure.Memory
             _idps[idp.Name] = idp;
             return Task.FromResult(idp);
         }
-        
+
     }
 
 }

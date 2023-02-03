@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8002919-59CC-4B9B-ACEF-8333371B90F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityModelManager.Infrastructure.Memory", "src\IdentityModelManager.Infrastructure.Memory\IdentityModelManager.Infrastructure.Memory.csproj", "{5DCEDCA9-A6F9-451F-975F-2DC643745590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Infrastructure.Memory", "src\IdpConfigurer.Infrastructure.Memory\IdpConfigurer.Infrastructure.Memory.csproj", "{5DCEDCA9-A6F9-451F-975F-2DC643745590}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Business", "src\IdpConfigurer.Business\IdpConfigurer.Business.csproj", "{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C}"
 EndProject

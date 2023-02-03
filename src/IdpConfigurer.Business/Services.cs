@@ -1,5 +1,5 @@
-﻿using IdentityModelManager.Infrastructure.Memory;
-using IdpConfigurer.Business.ViewController;
+﻿using IdpConfigurer.Business.ViewController;
+using IdpConfigurer.Infrastructure.Memory;
 using IdpConfigurer.Specification;
 using Microsoft.Extensions.DependencyInjection;
 

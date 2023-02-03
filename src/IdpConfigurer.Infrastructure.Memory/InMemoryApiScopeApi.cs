@@ -2,7 +2,7 @@
 using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Specification;
 
-namespace IdentityModelManager.Infrastructure.Memory;
+namespace IdpConfigurer.Infrastructure.Memory;
 
 public class InMemoryApiScopeApi : IApiScopeApi
 {
@@ -79,6 +79,6 @@ internal record class ApiScopeKey
         IdpName = o.IdpName;
         Name = o.Name;
     }
-    
+
 }
 

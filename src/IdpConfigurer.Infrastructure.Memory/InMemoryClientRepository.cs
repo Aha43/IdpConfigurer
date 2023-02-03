@@ -2,7 +2,7 @@
 using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Specification;
 
-namespace IdentityModelManager.Infrastructure.Memory
+namespace IdpConfigurer.Infrastructure.Memory
 {
     public class InMemoryClientRepository : IClientApi
     {
@@ -11,19 +11,19 @@ namespace IdentityModelManager.Infrastructure.Memory
         public Task<Client> CreateClientAsync(CreateClientParam param, CancellationToken cancellationToken)
         {
             var key = new ClientKey(param);
-            if (_clients.ContainsKey(key)) 
+            if (_clients.ContainsKey(key))
             {
                 throw new ArgumentException($"Client exists for key: '{key}'");
             }
 
-            _clients[key] = new Client { ClientId= param.ClientId, ClientName = param.ClientName };
+            _clients[key] = new Client { ClientId = param.ClientId, ClientName = param.ClientName };
             return Task.FromResult(_clients[key]);
         }
 
         public Task<bool> DeleteClientAsync(DeleteClientParam param, CancellationToken cancellationToken)
         {
             var key = new ClientKey(param);
-            if (_clients.ContainsKey(key)) 
+            if (_clients.ContainsKey(key))
             {
                 _clients.Remove(key);
                 return Task.FromResult(true);
@@ -35,7 +35,7 @@ namespace IdentityModelManager.Infrastructure.Memory
         public Task<Client> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)
         {
             var key = new ClientKey(param);
-            if (_clients.TryGetValue(key, out Client? client)) 
+            if (_clients.TryGetValue(key, out Client? client))
             {
                 return Task.FromResult(client);
             }
@@ -52,7 +52,7 @@ namespace IdentityModelManager.Infrastructure.Memory
         public Task<Client> UpdateClientAsync(UpdateClientParam param, CancellationToken cancellationToken)
         {
             var key = new ClientKey(param.IdpName, param.Client.ClientId!);
-            if (_clients.ContainsKey(key)) 
+            if (_clients.ContainsKey(key))
             {
                 _clients[key] = param.Client;
                 return Task.FromResult(param.Client);
