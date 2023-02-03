@@ -1,7 +1,7 @@
 using IdpConfigurer.Business.ViewController;
 using Microsoft.AspNetCore.Components;
 
-namespace IdentityModelManager.Application.WebApp.Pages.Application;
+namespace IdpConfigurer.Application.WebApp.Pages.Application;
 
 public partial class ClientPage
 {
@@ -14,8 +14,8 @@ public partial class ClientPage
 
     protected override async Task OnParametersSetAsync()
     {
-        if (!string.IsNullOrWhiteSpace(IdpName) && !string.IsNullOrWhiteSpace(ClientId)) 
-        { 
+        if (!string.IsNullOrWhiteSpace(IdpName) && !string.IsNullOrWhiteSpace(ClientId))
+        {
             await ViewController.LoadAsync(IdpName, ClientId).ConfigureAwait(true);
         }
     }

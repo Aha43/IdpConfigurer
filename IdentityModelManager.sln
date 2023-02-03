@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityModelManager.Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Business", "src\IdpConfigurer.Business\IdpConfigurer.Business.csproj", "{2D65D5CA-6D71-4E5C-B984-E8A7CDB5CC7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityModelManager.Application.WebApp", "src\IdentityModelManager.Application.WebApp\IdentityModelManager.Application.WebApp.csproj", "{362C42A0-B87D-429C-BA66-7CAACF027E50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Application.WebApp", "src\IdpConfigurer.Application.WebApp\IdpConfigurer.Application.WebApp.csproj", "{362C42A0-B87D-429C-BA66-7CAACF027E50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

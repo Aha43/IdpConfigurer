@@ -1,7 +1,7 @@
 using IdpConfigurer.Business.ViewController;
 using Microsoft.AspNetCore.Components;
 
-namespace IdentityModelManager.Application.WebApp.Pages.Application
+namespace IdpConfigurer.Application.WebApp.Pages.Application
 {
     public partial class IdpsPage
     {

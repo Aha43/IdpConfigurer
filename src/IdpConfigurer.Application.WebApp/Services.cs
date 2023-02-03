@@ -1,6 +1,6 @@
 ﻿using IdpConfigurer.Business;
 
-namespace IdentityModelManager.Application.WebApp;
+namespace IdpConfigurer.Application.WebApp;
 
 public static class Services
 {

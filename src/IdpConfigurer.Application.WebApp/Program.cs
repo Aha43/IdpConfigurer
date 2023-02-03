@@ -1,4 +1,4 @@
-using IdentityModelManager.Application.WebApp;
+using IdpConfigurer.Application.WebApp;
 using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 using MudBlazor.Services;
 
