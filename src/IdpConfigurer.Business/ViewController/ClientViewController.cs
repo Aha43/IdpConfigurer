@@ -11,6 +11,8 @@ namespace IdpConfigurer.Business.ViewController
         private readonly IClientApi _clientApi;
         private readonly IApiScopeApi _apiScopeApi;
 
+        public bool AllowOfflineAccess { get; set; }
+
         public string? IdpName { get; private set; }
 
         public Client? Client { get; private set; }
@@ -32,6 +34,9 @@ namespace IdpConfigurer.Business.ViewController
 
             var readClientParam = new ReadClientParam { IdpName = idpName, ClientId = clientId };
             Client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
+
+            AllowOfflineAccess = Client.AllowOfflineAccess;
+
             await LoadApiScopes(idpName, Client, cancellationToken).ConfigureAwait(false);
         }
 
@@ -74,6 +79,16 @@ namespace IdpConfigurer.Business.ViewController
             }
         }
         #endregion
+
+        public async Task SaveSettings() => await SaveSettings(default);
+        public async Task SaveSettings(CancellationToken cancellationToken)
+        {
+            if (Client == null) return;
+
+            Client.AllowOfflineAccess = AllowOfflineAccess;
+
+            await UpdateClient(cancellationToken);
+        }
 
         public async Task SaveApiSelection() => await SaveApiSelection(default);
         public async Task SaveApiSelection(CancellationToken cancellationToken)

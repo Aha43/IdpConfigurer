@@ -5,6 +5,12 @@
 <MudStack>
     <MudText Typo="Typo.h5">@ViewController.Client?.ClientName</MudText>
     <MudExpansionPanels>
+        <MudExpansionPanel Text="Settings">
+            <MudStack>
+                <MudCheckBox @bind-Checked="ViewController.AllowOfflineAccess" Label="AllowOfflineAccess"/>
+                <MudButton OnClick="ViewController.SaveSettings">Save</MudButton>
+            </MudStack>
+        </MudExpansionPanel>
         <MudExpansionPanel Text="Redirect Uris">
             <MudStack>
                 <MudStack Row="true">
@@ -30,7 +36,7 @@
                     @for (int i = 0; i<ViewController.SelectedApiScopes.Length; i++)
                     {
                         int k = i;
-                        <MudCheckBox @bind-Checked="ViewController.SelectedApiScopes[k].Selected" Label="@ViewController.SelectedApiScopes[i].Title"></MudCheckBox>
+                        <MudCheckBox @bind-Checked="ViewController.SelectedApiScopes[k].Selected" Label="@ViewController.SelectedApiScopes[i].Title" />
                     }
                 </MudStack>
                 <MudButton OnClick="ViewController.SaveApiSelection">Save</MudButton>
