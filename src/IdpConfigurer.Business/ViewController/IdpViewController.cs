@@ -48,8 +48,9 @@ namespace IdpConfigurer.Business.ViewController
         public async Task CreateClientAsync() => await CreateClientAsync(default).ConfigureAwait(true);
         public async Task CreateClientAsync(CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(NewClientId) && !string.IsNullOrEmpty(NewClientName) && Idp != null)
+            if (Idp != null && !string.IsNullOrEmpty(NewClientId))
             {
+                if (string.IsNullOrWhiteSpace(NewClientName)) NewClientName = NewClientId;
                 var param = new CreateClientParam { ClientName = NewClientName, ClientId = NewClientId, IdpName = Idp.Name };
                 var client = await _clientApi.CreateClientAsync(param, cancellationToken).ConfigureAwait(true);
                 _clients.Add(client);
