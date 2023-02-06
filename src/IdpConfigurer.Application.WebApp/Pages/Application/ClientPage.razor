@@ -12,6 +12,18 @@
                 <MudButton OnClick="ViewController.SaveSettings">Save</MudButton>
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="Grants / Flows">
+            <MudStack>
+                <MudStack>
+                    <MudCheckBox @bind-Checked="ViewController.Hybrid" Label="Hybrid" />
+                    <MudCheckBox @bind-Checked="ViewController.ResourceOwnerPassword" Label="Password" />
+                    <MudCheckBox @bind-Checked="ViewController.Implicit" Label="Implicit" />
+                    <MudCheckBox @bind-Checked="ViewController.AuthorizationCode" Label="AuthorizationCode" />
+                    <MudCheckBox @bind-Checked="ViewController.ClientCredentials" Label="ClientCredentials" />
+                </MudStack>
+                <MudButton OnClick="ViewController.SaveGrantsFlows">Save</MudButton>
+            </MudStack>
+        </MudExpansionPanel>
         <MudExpansionPanel Text="Redirect Uris">
             <MudStack>
                 <MudStack Row="true">

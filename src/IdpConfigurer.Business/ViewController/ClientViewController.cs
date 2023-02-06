@@ -11,12 +11,22 @@ namespace IdpConfigurer.Business.ViewController
         private readonly IClientApi _clientApi;
         private readonly IApiScopeApi _apiScopeApi;
 
-        public bool AllowOfflineAccess { get; set; }
-        public bool AlwaysIncludeUserClaimsInIdToken { get; set; }
-
         public string? IdpName { get; private set; }
 
         public Client? Client { get; private set; }
+
+        #region Settings
+        public bool AllowOfflineAccess { get; set; }
+        public bool AlwaysIncludeUserClaimsInIdToken { get; set; }
+        #endregion
+
+        #region Grant_flow
+        public bool Hybrid { get; set; }
+        public bool ResourceOwnerPassword { get; set; }
+        public bool Implicit { get; set; }
+        public bool AuthorizationCode { get; set; }
+        public bool ClientCredentials { get; set; }
+        #endregion
 
         public ApiScopeViewModel[] SelectedApiScopes { get; private set; } = Array.Empty<ApiScopeViewModel>();
 
@@ -28,6 +38,7 @@ namespace IdpConfigurer.Business.ViewController
             _apiScopeApi = apiScopeApi;
         }
 
+        #region Load
         public async Task LoadAsync(string idpName, string clientId) => await LoadAsync(idpName, clientId, default).ConfigureAwait(false);
         public async Task LoadAsync(string idpName, string clientId, CancellationToken cancellationToken)
         {
@@ -40,6 +51,8 @@ namespace IdpConfigurer.Business.ViewController
             AlwaysIncludeUserClaimsInIdToken = Client.AlwaysIncludeUserClaimsInIdToken;
 
             await LoadApiScopes(idpName, Client, cancellationToken).ConfigureAwait(false);
+
+            SetGrantsFlows(Client);
         }
 
         private async Task LoadApiScopes(string idpName, Client client, CancellationToken cancellationToken)
@@ -52,6 +65,26 @@ namespace IdpConfigurer.Business.ViewController
                 Selected = client.AllowedScopes.Contains(e.Name)
             }).ToArray();
         }
+
+        private void SetGrantsFlows(Client client)
+        {
+            Hybrid = false;
+            AuthorizationCode = false;
+            ClientCredentials = false;
+
+            foreach (var g in client.AllowedGrantTypes)
+            {
+                switch (g)
+                {
+                    case GrantType.Hybrid: Hybrid = true; break;
+                    case GrantType.ResourceOwnerPassword: ResourceOwnerPassword = true; break;
+                    case GrantType.ClientCredentials: ClientCredentials = true; break;
+                    case GrantType.Implicit: Implicit = true; break;
+                    case GrantType.AuthorizationCode: AuthorizationCode = true; break;
+                }
+            }
+        }
+        #endregion
 
         #region redirectUris
         public string? NewRedirectUri { get; set; }
@@ -82,6 +115,7 @@ namespace IdpConfigurer.Business.ViewController
         }
         #endregion
 
+        #region Save
         public async Task SaveSettings() => await SaveSettings(default);
         public async Task SaveSettings(CancellationToken cancellationToken)
         {
@@ -89,6 +123,22 @@ namespace IdpConfigurer.Business.ViewController
 
             Client.AllowOfflineAccess = AllowOfflineAccess;
             Client.AlwaysIncludeUserClaimsInIdToken = AlwaysIncludeUserClaimsInIdToken;
+
+            await UpdateClient(cancellationToken);
+        }
+
+        public async Task SaveGrantsFlows() => await SaveGrantsFlows(default);
+        public async Task SaveGrantsFlows(CancellationToken cancellationToken)
+        {
+            if (Client == null) return;
+
+            Client.AllowedGrantTypes.Clear();
+
+            if (Hybrid) Client.AllowedGrantTypes.Add(GrantType.Hybrid);
+            if (ResourceOwnerPassword) Client.AllowedGrantTypes.Add(GrantType.ResourceOwnerPassword);
+            if (Implicit) Client.AllowedGrantTypes.Add(GrantType.Implicit);
+            if (AuthorizationCode) Client.AllowedGrantTypes.Add(GrantType.AuthorizationCode);
+            if (ClientCredentials) Client.AllowedGrantTypes.Add(GrantType.ClientCredentials);
 
             await UpdateClient(cancellationToken);
         }
@@ -122,6 +172,7 @@ namespace IdpConfigurer.Business.ViewController
                 await _clientApi.UpdateClientAsync(param, cancellationToken).ConfigureAwait(false);
             }
         }
+        #endregion
 
     }
 
