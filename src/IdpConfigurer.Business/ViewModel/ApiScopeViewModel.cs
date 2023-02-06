@@ -1,9 +1,8 @@
-﻿using IdpConfigurer.Business;
-using IdpConfigurer.Domain;
+﻿using IdpConfigurer.Domain;
 
 namespace IdpConfigurer.Business.ViewModel;
 
-public record class SelectedApiScope
+public record class ApiScopeViewModel
 {
     public bool Selected { get; set; }
     public required ApiScope ApiScope { get; init; }

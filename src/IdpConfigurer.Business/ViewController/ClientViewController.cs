@@ -15,7 +15,7 @@ namespace IdpConfigurer.Business.ViewController
 
         public Client? Client { get; private set; }
 
-        public IEnumerable<SelectedApiScope> SelectedApiScopes { get; private set; } = Enumerable.Empty<SelectedApiScope>();
+        public ApiScopeViewModel[] SelectedApiScopes { get; private set; } = Array.Empty<ApiScopeViewModel>();
 
         public ClientViewController(
             IClientApi clientApi,
@@ -32,10 +32,18 @@ namespace IdpConfigurer.Business.ViewController
 
             var readClientParam = new ReadClientParam { IdpName = idpName, ClientId = clientId };
             Client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
+            await LoadApiScopes(idpName, Client, cancellationToken).ConfigureAwait(false);
+        }
 
+        private async Task LoadApiScopes(string idpName, Client client, CancellationToken cancellationToken)
+        {
             var readApiScopesParam = new ReadApiScopesParam { IdpName = idpName };
             var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
-            SelectedApiScopes = apis.Select(e => new SelectedApiScope { ApiScope = e });
+            SelectedApiScopes = apis.Select(e => new ApiScopeViewModel
+            {
+                ApiScope = e,
+                Selected = client.AllowedScopes.Contains(e.Name)
+            }).ToArray();
         }
 
         #region redirectUris
@@ -66,6 +74,27 @@ namespace IdpConfigurer.Business.ViewController
             }
         }
         #endregion
+
+        public async Task SaveApiSelection() => await SaveApiSelection(default);
+        public async Task SaveApiSelection(CancellationToken cancellationToken)
+        {
+            if (Client == null) return;
+
+            Client.AllowedScopes.Clear();
+            foreach (var api in SelectedApiScopes)
+            {
+                if (api.Selected)
+                {
+                    Client.AllowedScopes.Add(api.ApiScope.Name);
+                }
+                else
+                {
+                    Client.AllowedScopes.Remove(api.ApiScope.Name);
+                }
+            }
+
+            await UpdateClient(cancellationToken).ConfigureAwait(false);
+        }
 
         private async Task UpdateClient(CancellationToken cancellationToken)
         {

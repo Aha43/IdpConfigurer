@@ -25,14 +25,16 @@
             </MudStack>
         </MudExpansionPanel>
         <MudExpansionPanel Text="APIs">
-            <MudList>
-                @foreach (var apiScope in ViewController.SelectedApiScopes)
-                {
-                    <MudListItem>
-                        <MudCheckBox @bind-Checked="@apiScope.Selected" Label="@apiScope.Title"></MudCheckBox>
-                    </MudListItem>
-                }
-            </MudList>
+            <MudStack>
+                <MudStack>
+                    @for (int i = 0; i<ViewController.SelectedApiScopes.Length; i++)
+                    {
+                        int k = i;
+                        <MudCheckBox @bind-Checked="ViewController.SelectedApiScopes[k].Selected" Label="@ViewController.SelectedApiScopes[i].Title"></MudCheckBox>
+                    }
+                </MudStack>
+                <MudButton OnClick="ViewController.SaveApiSelection">Save</MudButton>
+            </MudStack>
         </MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>
