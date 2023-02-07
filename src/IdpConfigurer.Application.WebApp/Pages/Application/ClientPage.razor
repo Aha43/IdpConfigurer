@@ -47,6 +47,29 @@
                 </MudList>
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="Post Logout Redirect Uris">
+            <MudStack>
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NewPostLogoutRedirectUri" Label="Post Logout Redirect Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.AddPostLogoutRedirectUriAsync">Add</MudButton>
+                    @if (ViewController.PostLogoutRedirectUriErrorMessage != null)
+                    {
+                        <MudText Color="Color.Error">@ViewController.PostLogoutRedirectUriErrorMessage</MudText>
+                    }
+                </MudStack>
+                <MudList>
+                    @if (ViewController.Client != null)
+                    {
+                        foreach (var uri in ViewController.Client.PostLogoutRedirectUris)
+                        {
+                            <MudListItem>
+                                <MudText>@uri</MudText>
+                            </MudListItem>
+                        }
+                    }
+                </MudList>
+            </MudStack>
+        </MudExpansionPanel>
         <MudExpansionPanel Text="APIs">
             <MudStack>
                 <MudStack>
