@@ -22,6 +22,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultSchema>idpc</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,11 +58,30 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Procedures" />
+    <Folder Include="Procedures\Idp" />
+    <Folder Include="Procedures\Client" />
+    <Folder Include="Procedures\Api" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Idp.sql" />
     <Build Include="Tables\Client.sql" />
     <Build Include="Schema.sql" />
     <Build Include="Tables\Api.sql" />
+    <Build Include="Procedures\Idp\CreateIdp.sql" />
+    <Build Include="Procedures\Idp\ReadIdps.sql" />
+    <Build Include="Procedures\Idp\ReadIdp.sql" />
+    <Build Include="Procedures\Idp\UpdateIdp.sql" />
+    <Build Include="Procedures\Idp\DeleteIdp.sql" />
+    <Build Include="Procedures\Client\CreateClient.sql" />
+    <Build Include="Procedures\Client\ReadClients.sql" />
+    <Build Include="Procedures\Client\ReadClient.sql" />
+    <Build Include="Procedures\Client\UpdateClient.sql" />
+    <Build Include="Procedures\Client\DeleteClient.sql" />
+    <Build Include="Procedures\Api\CreateApi.sql" />
+    <Build Include="Procedures\Api\ReadApis.sql" />
+    <Build Include="Procedures\Api\ReadApi.sql" />
+    <Build Include="Procedures\Api\UpdateApi.sql" />
+    <Build Include="Procedures\Api\DeleteApi.sql" />
   </ItemGroup>
 </Project>

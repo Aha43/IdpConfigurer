@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [idpc].[Client]
 (
 	[ClientId] nvarchar(40) NOT NULL,
+	[ClientName] nvarchar(40) NOT NULL,
 	[IdpName] nvarchar(40) NOT NULL,
 	[Json] nvarchar NOT NULL,
 

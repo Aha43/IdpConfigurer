@@ -1,10 +1,5 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.ApiScope;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IdpConfigurer.Specification;
 
