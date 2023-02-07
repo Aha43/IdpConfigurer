@@ -34,17 +34,20 @@
                         <MudText Color="Color.Error">@ViewController.RedirectUriErrorMessage</MudText>
                     }
                 </MudStack>
-                <MudList>
-                    @if (ViewController.Client != null)
+               
+                @if (ViewController.Client != null)
+                {
+                    foreach (var uri in ViewController.Client.RedirectUris)
                     {
-                        foreach (var uri in ViewController.Client.RedirectUris)
-                        {
-                            <MudListItem>
-                                <MudText>@uri</MudText>
-                            </MudListItem>
-                        }
+                            
+                        <MudStack Row="true" AlignItems="AlignItems.Center">
+                            <MudText>@uri</MudText>
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemoveRedirectUriAsync(uri)" />
+                        </MudStack>
+                            
                     }
-                </MudList>
+                }
+                
             </MudStack>
         </MudExpansionPanel>
         <MudExpansionPanel Text="Post Logout Redirect Uris">
@@ -57,17 +60,18 @@
                         <MudText Color="Color.Error">@ViewController.PostLogoutRedirectUriErrorMessage</MudText>
                     }
                 </MudStack>
-                <MudList>
-                    @if (ViewController.Client != null)
+                
+                @if (ViewController.Client != null)
+                {
+                    foreach (var uri in ViewController.Client.PostLogoutRedirectUris)
                     {
-                        foreach (var uri in ViewController.Client.PostLogoutRedirectUris)
-                        {
-                            <MudListItem>
-                                <MudText>@uri</MudText>
-                            </MudListItem>
-                        }
+                        <MudStack Row="true" AlignItems="AlignItems.Center">
+                            <MudText>@uri</MudText>
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemovePostLogoutRedirectUriAsync(uri)" />
+                        </MudStack>
                     }
-                </MudList>
+                }
+                
             </MudStack>
         </MudExpansionPanel>
         <MudExpansionPanel Text="APIs">
