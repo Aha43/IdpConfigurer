@@ -15,6 +15,7 @@
     <ProjectReference Include="..\IdpConfigurer.Domain\IdpConfigurer.Domain.csproj" />
     <ProjectReference Include="..\IdpConfigurer.Infrastructure.Memory\IdpConfigurer.Infrastructure.Memory.csproj" />
     <ProjectReference Include="..\IdpConfigurer.Specification\IdpConfigurer.Specification.csproj" />
+    <ProjectReference Include="..\IdpConfigurer.Util\IdpConfigurer.Util.csproj" />
   </ItemGroup>
 
 </Project>

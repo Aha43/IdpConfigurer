@@ -26,9 +26,13 @@
         </MudExpansionPanel>
         <MudExpansionPanel Text="Redirect Uris">
             <MudStack>
-                <MudStack Row="true">
+                <MudStack>
                     <MudTextField @bind-Value="ViewController.NewRedirectUri" Label="Redirect Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
                     <MudButton OnClick="ViewController.AddRedirectUriAsync">Add</MudButton>
+                    @if (ViewController.RedirectUriErrorMessage != null)
+                    {
+                        <MudText Color="Color.Error">@ViewController.RedirectUriErrorMessage</MudText>
+                    }
                 </MudStack>
                 <MudList>
                     @if (ViewController.Client != null)
