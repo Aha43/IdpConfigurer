@@ -13,6 +13,9 @@
         public ICollection<string> AllowedGrantTypes = new HashSet<string>();
 
         public ICollection<string> RedirectUris = new HashSet<string>();
+
+        public ICollection<string> PostLogoutRedirectUris = new HashSet<string>();
+
         public ICollection<string> AllowedScopes = new HashSet<string>();
     }
 }
