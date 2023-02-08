@@ -68,7 +68,8 @@ namespace IdpConfigurer.Business.ViewController
         {
             if (!string.IsNullOrEmpty(NewApiScopeName) && Idp != null)
             {
-                var param = new CreateApiScopeParam { Name = NewApiScopeName, DisplayName = NewApiScopeDisplayName, IdpName = Idp.Name };
+                var displayName = string.IsNullOrWhiteSpace(NewApiScopeDisplayName) ? NewApiScopeName : NewApiScopeDisplayName;
+                var param = new CreateApiScopeParam { Name = NewApiScopeName, DisplayName = displayName, IdpName = Idp.Name };
                 var scope = await _apiScopeApi.CreateApiScopeAsync(param, cancellationToken).ConfigureAwait(true);
                 _apiScopes.Add(scope);
             }
