@@ -37,7 +37,7 @@ public static class ClientDboExtensions
         return client.ToDbo(param.IdpName);
     }
 
-    public static Client ToClient(this ClientDbo dbo)
+    public static Client ToDto(this ClientDbo dbo)
     {
         var retVal = JsonConvert.DeserializeObject<Client>(dbo.Json);
         if (retVal == null) 

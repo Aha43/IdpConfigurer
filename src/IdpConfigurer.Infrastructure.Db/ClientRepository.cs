@@ -26,7 +26,7 @@ public class ClientRepository : IClientApi
 
         var result = await con.QueryAsync<ClientDbo>("idpc.CreateClient", dp, commandType: System.Data.CommandType.StoredProcedure);
         var retDbo = result.First();
-        var retVal = retDbo.ToClient();
+        var retVal = retDbo.ToDto();
         return retVal;
     }
 
@@ -49,9 +49,9 @@ public class ClientRepository : IClientApi
         dp.Add("@idpName", param.IdpName);
         dp.Add("@clientId", param.ClientId);
 
-        var result = await con.QueryAsync("idpc.ReadClient", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
+        var result = await con.QueryAsync<ClientDbo>("idpc.ReadClient", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
         var retDbo = result.First();
-        var retVal = retDbo.ToClient();
+        var retVal = retDbo.ToDto();
         return retVal;
     }
 
@@ -63,7 +63,7 @@ public class ClientRepository : IClientApi
         dp.Add("@idpName", param.IdpName);
 
         var result = await con.QueryAsync<ClientDbo>("idpc.ReadClients", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
-        var retVal = result.Select(e => e.ToClient());
+        var retVal = result.Select(e => e.ToDto());
         return retVal;
     }
 
@@ -79,9 +79,9 @@ public class ClientRepository : IClientApi
         dp.Add("@clientName", dbo.ClientName);
         dp.Add("@json", dbo.Json);
 
-        var result = await con.QueryAsync("idpc.UpdateClient", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
+        var result = await con.QueryAsync<ClientDbo>("idpc.UpdateClient", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
         var retDbo = result.First();
-        var retVal = retDbo.ToClient();
+        var retVal = retDbo.ToDto();
         return retVal;
     }
 
