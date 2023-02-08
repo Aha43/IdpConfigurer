@@ -1,4 +1,5 @@
 ﻿using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.Client;
 using Newtonsoft.Json;
 
 namespace IdpConfigurer.Infrastructure.Db.Dbo;
@@ -23,6 +24,17 @@ public static class Extensions
             IdpName = idpName,
             Json = JsonConvert.SerializeObject(client)
         };
+    }
+
+    public static ClientDbo ToDbo(this CreateClientParam param)
+    {
+        var client = new Client
+        {
+            ClientId = param.ClientId,
+            ClientName = param.ClientName
+        };
+
+        return client.ToDbo(param.IdpName);
     }
 
     public static Client ToClient(this ClientDbo dbo)
