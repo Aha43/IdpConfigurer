@@ -20,16 +20,16 @@ namespace IdpConfigurer.Infrastructure.Memory
             return Task.FromResult(_clients[key]);
         }
 
-        public Task<bool> DeleteClientAsync(DeleteClientParam param, CancellationToken cancellationToken)
+        public Task DeleteClientAsync(DeleteClientParam param, CancellationToken cancellationToken)
         {
             var key = new ClientKey(param);
             if (_clients.ContainsKey(key))
             {
                 _clients.Remove(key);
-                return Task.FromResult(true);
+                return Task.CompletedTask;
             }
 
-            return Task.FromResult(false);
+            return Task.CompletedTask;
         }
 
         public Task<Client> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)

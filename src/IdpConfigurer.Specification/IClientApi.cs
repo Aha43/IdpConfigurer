@@ -9,5 +9,5 @@ public interface IClientApi
     Task<IEnumerable<Client>> ReadClientsAsync(ReadClientsParam param, CancellationToken cancellationToken);
     Task<Client> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken);
     Task<Client> UpdateClientAsync(UpdateClientParam param, CancellationToken cancellationToken);
-    Task<bool> DeleteClientAsync(DeleteClientParam param, CancellationToken cancellationToken);
+    Task DeleteClientAsync(DeleteClientParam param, CancellationToken cancellationToken);
 }

@@ -9,5 +9,5 @@ public interface IIdpApi
     Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken);
     Task<Idp> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken);
     Task<Idp> UpdateIdpAsync(Idp idp, CancellationToken cancellationToken);
-    Task<bool> DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken);
+    Task DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken);
 }

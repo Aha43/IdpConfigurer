@@ -9,5 +9,5 @@ public interface IApiScopeApi
     Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam param, CancellationToken cancellationToken);
     Task<ApiScope> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken);
     Task<ApiScope> UpdateApiScopeAsync(UpdateApiScopeParam param, CancellationToken cancellationToken);
-    Task<bool> DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken);
+    Task DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken);
 }

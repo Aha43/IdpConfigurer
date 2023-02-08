@@ -20,16 +20,16 @@ public class InMemoryApiScopeApi : IApiScopeApi
         return Task.FromResult(_scopes[key]);
     }
 
-    public Task<bool> DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken)
+    public Task DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken)
     {
         var key = new ApiScopeKey(param);
         if (_scopes.ContainsKey(key))
         {
             _scopes.Remove(key);
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 
-        return Task.FromResult(false);
+        return Task.CompletedTask;
     }
 
     public Task<ApiScope> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken)

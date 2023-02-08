@@ -28,12 +28,12 @@ namespace IdpConfigurer.Infrastructure.Memory
             return this;
         }
 
-        public Task<bool> DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken)
+        public Task DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken)
         {
-            if (!_idps.ContainsKey(param.Name)) return Task.FromResult(false);
+            if (!_idps.ContainsKey(param.Name)) return Task.CompletedTask;
 
             _idps.Remove(param.Name);
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 
         public Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken) => Task.FromResult(_idps.Values.AsEnumerable());
