@@ -1,11 +1,7 @@
-﻿using IdpConfigurer.Domain;
+﻿using Dapper;
+using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Specification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IdpConfigurer.Infrastructure.Db
 {
@@ -15,9 +11,17 @@ namespace IdpConfigurer.Infrastructure.Db
 
         public ApiRepository(ConnectionProvider connectionProvider) => _connectionProvider = connectionProvider;
 
-        public Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam param, CancellationToken cancellationToken)
+        public async Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam param, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            using var con = _connectionProvider.Connection;
+
+            var dp = new DynamicParameters();
+            dp.Add("@ipdName", param.IdpName);
+            dp.Add("@Name", param.Name);
+            dp.Add("@displayName", param.DisplayName);
+
+            var retVal = await con.QueryAsync<ApiScope>("idpc.CreateApi", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
+            return retVal.First();
         }
 
         public Task<bool> DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken)
