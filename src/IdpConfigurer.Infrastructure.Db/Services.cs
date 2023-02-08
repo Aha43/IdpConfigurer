@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using IdpConfigurer.Specification;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -11,7 +12,15 @@ public static class Services
     {
         var connectionString = configration.GetConnectionString("default");
         if (connectionString == null) return services;
-        return services.AddSingleton(new ConnectionProvider(connectionString));
+
+        return services.AddSingleton(new ConnectionProvider(connectionString))
+            .AddApis();
+    }
+
+    private static IServiceCollection AddApis(this IServiceCollection services)
+    {
+        return services.AddSingleton<IApiScopeApi, ApiRepository>()
+            .AddSingleton<IClientApi, ClientRepository>();
     }
 }
 
