@@ -5,11 +5,11 @@ using IdpConfigurer.Specification;
 
 namespace IdpConfigurer.Infrastructure.Db;
 
-public class ApiRepository : IApiScopeApi
+public class ApiScopeRepository : IApiScopeApi
 {
     private readonly ConnectionProvider _connectionProvider;
 
-    public ApiRepository(ConnectionProvider connectionProvider) => _connectionProvider = connectionProvider;
+    public ApiScopeRepository(ConnectionProvider connectionProvider) => _connectionProvider = connectionProvider;
 
     public async Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam param, CancellationToken cancellationToken)
     {

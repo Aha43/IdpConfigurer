@@ -19,7 +19,7 @@ public static class Services
 
     private static IServiceCollection AddApis(this IServiceCollection services)
     {
-        return services.AddSingleton<IApiScopeApi, ApiRepository>()
+        return services.AddSingleton<IApiScopeApi, ApiScopeRepository>()
             .AddSingleton<IClientApi, ClientRepository>();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using IdpConfigurer.Domain;
-using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Domain.Param.Idp;
 using Newtonsoft.Json;
 
