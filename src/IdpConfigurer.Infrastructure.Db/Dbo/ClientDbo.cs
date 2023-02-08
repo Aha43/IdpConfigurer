@@ -13,16 +13,16 @@ public class ClientDbo
 }
 
 
-public static class Extensions
+public static class ClientDboExtensions
 {
-    public static ClientDbo ToDbo(this Client client, string idpName)
+    public static ClientDbo ToDbo(this Client dto, string idpName)
     {
         return new ClientDbo
         {
-            ClientId = client.ClientId,
-            ClientName = client.ClientName,
+            ClientId = dto.ClientId,
+            ClientName = dto.ClientName,
             IdpName = idpName,
-            Json = JsonConvert.SerializeObject(client)
+            Json = JsonConvert.SerializeObject(dto)
         };
     }
 
