@@ -14,7 +14,7 @@ namespace IdpConfigurer.Infrastructure.Db
 
         public async Task<Idp> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
         {
-            using var con = _connectionProvider.Connection;
+            var con = _connectionProvider.Connection();
 
             var dbo = param.ToDbo();
 
@@ -31,7 +31,7 @@ namespace IdpConfigurer.Infrastructure.Db
 
         public async Task DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken)
         {
-            using var con = _connectionProvider.Connection;
+            var con = _connectionProvider.Connection();
 
             var dp = new DynamicParameters();
             dp.Add("@Name", param.Name);
@@ -41,7 +41,7 @@ namespace IdpConfigurer.Infrastructure.Db
 
         public async Task<Idp> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken)
         {
-            using var con = _connectionProvider.Connection;
+            var con = _connectionProvider.Connection();
 
             var dp = new DynamicParameters();
             dp.Add("@Name", param.Name);
@@ -54,7 +54,7 @@ namespace IdpConfigurer.Infrastructure.Db
 
         public async Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken)
         {
-            using var con = _connectionProvider.Connection;
+            var con = _connectionProvider.Connection();
 
             var result = await con.QueryAsync<IdpDbo>("idpc.ReadIdps", commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
             var retVal = result.Select(e => e.ToDto());
@@ -63,7 +63,7 @@ namespace IdpConfigurer.Infrastructure.Db
 
         public async Task<Idp> UpdateIdpAsync(Idp idp, CancellationToken cancellationToken)
         {
-            using var con = _connectionProvider.Connection;
+            var con = _connectionProvider.Connection();
 
             var dbo = idp.ToDbo();
 

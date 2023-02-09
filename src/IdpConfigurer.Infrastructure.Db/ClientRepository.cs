@@ -14,7 +14,7 @@ public class ClientRepository : IClientApi
 
     public async Task<Client> CreateClientAsync(CreateClientParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dbo = param.ToDbo();
 
@@ -32,7 +32,7 @@ public class ClientRepository : IClientApi
 
     public async Task DeleteClientAsync(DeleteClientParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@idpName", param.IdpName);
@@ -43,7 +43,7 @@ public class ClientRepository : IClientApi
 
     public async Task<Client> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@idpName", param.IdpName);
@@ -57,7 +57,7 @@ public class ClientRepository : IClientApi
 
     public async Task<IEnumerable<Client>> ReadClientsAsync(ReadClientsParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@idpName", param.IdpName);
@@ -69,7 +69,7 @@ public class ClientRepository : IClientApi
 
     public async Task<Client> UpdateClientAsync(UpdateClientParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dbo = param.Client.ToDbo(param.IdpName);
 

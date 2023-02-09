@@ -31,5 +31,8 @@ public class ConnectionProvider
 
     public ConnectionProvider(string connectionString) => _connectionString = connectionString;
 
-    public DbConnection Connection => new SqlConnection(_connectionString);
+    public DbConnection Connection()
+    {
+        return new SqlConnection(_connectionString);
+    }
 }

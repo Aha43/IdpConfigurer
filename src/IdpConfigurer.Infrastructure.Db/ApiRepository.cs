@@ -13,7 +13,7 @@ public class ApiScopeRepository : IApiScopeApi
 
     public async Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@ipdName", param.IdpName);
@@ -26,7 +26,7 @@ public class ApiScopeRepository : IApiScopeApi
 
     public async Task DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@ipdName", param.IdpName);
@@ -37,7 +37,7 @@ public class ApiScopeRepository : IApiScopeApi
 
     public async Task<ApiScope> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@ipdName", param.IdpName);
@@ -49,7 +49,7 @@ public class ApiScopeRepository : IApiScopeApi
 
     public async Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@ipdName", param.IdpName);
@@ -60,7 +60,7 @@ public class ApiScopeRepository : IApiScopeApi
 
     public async Task<ApiScope> UpdateApiScopeAsync(UpdateApiScopeParam param, CancellationToken cancellationToken)
     {
-        using var con = _connectionProvider.Connection;
+        using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
         dp.Add("@ipdName", param.IdpName);
