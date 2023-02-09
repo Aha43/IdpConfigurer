@@ -74,6 +74,30 @@
                 
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="Allowed Cors Origins Uri">
+            <MudStack>
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NewAllowedCorsOriginsUri" Label="Allowed Cors Origins Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.AddAllowedCorsOriginsUriAsync">Add</MudButton>
+                    @if (ViewController.AllowedCorsOriginsUriErrorMessage != null)
+                    {
+                        <MudText Color="Color.Error">@ViewController.AllowedCorsOriginsUriErrorMessage</MudText>
+                    }
+                </MudStack>
+
+                @if (ViewController.Client != null)
+                {
+                    foreach (var uri in ViewController.Client.AllowedCorsOrigins)
+                    {
+                        <MudStack Row="true" AlignItems="AlignItems.Center">
+                            <MudText>@uri</MudText>
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemoveAllowedCorsOriginsUriAsync(uri)" />
+                        </MudStack>
+                    }
+                }
+
+            </MudStack>
+        </MudExpansionPanel>
         <MudExpansionPanel Text="APIs">
             <MudStack>
                 <MudStack>

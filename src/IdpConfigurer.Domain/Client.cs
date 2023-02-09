@@ -16,6 +16,8 @@
 
         public ICollection<string> PostLogoutRedirectUris = new HashSet<string>();
 
+        public ICollection<string> AllowedCorsOrigins = new HashSet<string>();
+
         public ICollection<string> AllowedScopes = new HashSet<string>();
     }
 }
