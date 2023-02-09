@@ -4,5 +4,6 @@
 	@displayName nvarchar(40)
 AS
 	UPDATE [idpc].[Api] SET [DisplayName] = @displayName WHERE [IdpName] = @idpName AND [Name] = @name
+	SELECT * FROM [idpc].[Api] t WHERE [IdpName] = @idpName AND [Name] = @name
 RETURN 0
 GO

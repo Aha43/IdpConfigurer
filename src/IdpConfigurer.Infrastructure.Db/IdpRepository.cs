@@ -61,14 +61,18 @@ namespace IdpConfigurer.Infrastructure.Db
             return retVal;
         }
 
-        public async Task<Idp> UpdateIdpAsync(Idp idp, CancellationToken cancellationToken)
+        public async Task<Idp> UpdateIdpAsync(UpdateIdpParam param, CancellationToken cancellationToken)
         {
             var con = _connectionProvider.Connection();
 
-            var dbo = idp.ToDbo();
+            var dbo = param.Idp.ToDbo();
 
             var dp = new DynamicParameters();
             dp.Add("@Name", dbo.Name);
+            if (param.IdpName != null) 
+                dp.Add("@newName", param.IdpName);
+            else
+                dp.Add("@newName", null);
             dp.Add("@Uri", dbo.Uri);
             dp.Add("@json", dbo.Json);
 

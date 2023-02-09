@@ -1,6 +1,7 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Specification;
+using System.Runtime.Intrinsics.Arm;
 
 namespace IdpConfigurer.Infrastructure.Memory
 {
@@ -44,12 +45,22 @@ namespace IdpConfigurer.Infrastructure.Memory
             throw new ArgumentException($"No Idp named '{param.Name}'");
         }
 
-        public Task<Idp> UpdateIdpAsync(Idp idp, CancellationToken cancellationToken)
+        public Task<Idp> UpdateIdpAsync(UpdateIdpParam param, CancellationToken cancellationToken)
         {
-            if (!_idps.ContainsKey(idp.Name)) throw new ArgumentException($"Idp named '{idp.Name}' does not exists");
+            if (!_idps.ContainsKey(param.Idp.Name)) throw new ArgumentException($"Idp named '{param.Idp.Name}' does not exists");
 
-            _idps[idp.Name] = idp;
-            return Task.FromResult(idp);
+            if (param.IdpName == null)
+            {
+                _idps[param.Idp.Name] = param.Idp;
+                return Task.FromResult(param.Idp);
+            }
+            else
+            {
+                var newIdp = param.Idp with { Name = param.IdpName };
+                _idps.Remove(param.Idp.Name);
+                _idps[newIdp.Name] = newIdp;
+                return Task.FromResult(newIdp);
+            }
         }
 
     }

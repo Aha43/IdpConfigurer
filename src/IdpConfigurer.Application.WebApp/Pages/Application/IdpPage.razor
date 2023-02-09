@@ -5,7 +5,19 @@
 <MudText Typo="Typo.h3">Identity Provider</MudText>
 
 <MudStack>
-    <MudText Typo="Typo.h5">@ViewController.Idp?.Name</MudText>
+    <MudStack>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudText Typo="Typo.h5">@ViewController.Idp?.Name</MudText>
+            <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="() => ViewController.EditIdpName = true" />
+        </MudStack>
+        @if (ViewController.EditIdpName)
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudTextField Label="New Idp Name" @bind-Value="ViewController.NewIdpName" />
+                <MudButton OnClick="ViewController.UpdateIdpName">Save</MudButton>
+            </MudStack>
+        }
+    </MudStack>
     <MudExpansionPanels>
         <MudExpansionPanel Text="Clients">
             <MudStack>
@@ -43,4 +55,3 @@
         </MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>
-
