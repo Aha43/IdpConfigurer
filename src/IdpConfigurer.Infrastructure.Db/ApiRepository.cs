@@ -52,9 +52,9 @@ public class ApiScopeRepository : IApiScopeApi
         using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
-        dp.Add("@ipdName", param.IdpName);
+        dp.Add("@idpName", param.IdpName);
 
-        var retVal = await con.QueryAsync<ApiScope>("idpc.ReadApi", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
+        var retVal = await con.QueryAsync<ApiScope>("idpc.ReadApis", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
         return retVal;
     }
 

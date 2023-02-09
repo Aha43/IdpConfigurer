@@ -40,6 +40,11 @@ namespace IdpConfigurer.Business.ViewController
             var readClientsParam = new ReadClientsParam { IdpName = name };
             var clients = await _clientApi.ReadClientsAsync(readClientsParam, cancellationToken).ConfigureAwait(false);
             _clients.AddRange(clients);
+
+            _apiScopes.Clear();
+            var readApiScopesParam = new ReadApiScopesParam { IdpName = name };
+            var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
+            _apiScopes.AddRange(apis);
         }
 
         public string? NewClientName { get; set; }
