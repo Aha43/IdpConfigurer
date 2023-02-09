@@ -1,26 +1,32 @@
 ﻿using IdpConfigurer.Business.ViewController;
+using IdpConfigurer.Infrastructure.Db;
 using IdpConfigurer.Infrastructure.Memory;
 using IdpConfigurer.Specification;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IdpConfigurer.Business;
 
 public static class Services
 {
-    public static IServiceCollection AddIdentityModelManagerInMemoryServices(this IServiceCollection services)
+    public static IServiceCollection AddIdpConfigurerServices(this IServiceCollection services, IConfiguration configuration)
     {
         return services
-            .AddApis()
+            .AddInfrastructure(configuration)
             .AddViewControllers();
     }
 
-    private static IServiceCollection AddApis(this IServiceCollection services)
+    private static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
     {
-        return services
-            .AddSingleton<IIdpApi, InMemoryIdpRepository>()
-            .AddSingleton<IClientApi, InMemoryClientRepository>()
-            .AddSingleton<IApiScopeApi, InMemoryApiScopeApi>();
-    }
+        var api = configuration["Infrastructure"];
+        api = (api == null) ? "memory" : api;
+        switch (api) 
+        {
+            case "memory": return services.AddInMemoryApis();
+            case "db": return services.AddDbInfrastructure(configuration);
+            default: throw new ArgumentException($"Unknown infrastructure '{api}'");
+        }
+    }  
 
     private static IServiceCollection AddViewControllers(this IServiceCollection services)
     {

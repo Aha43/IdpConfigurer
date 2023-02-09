@@ -1,4 +1,5 @@
 using IdpConfigurer.Application.WebApp;
+using IdpConfigurer.Business;
 using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 using MudBlazor.Services;
 
@@ -11,7 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMudServices();
 
-builder.Services.AddAppServices();
+builder.Services.AddIdpConfigurerServices(builder.Configuration);
 
 var app = builder.Build();
 
