@@ -1,7 +1,7 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.Idp;
 
-namespace IdpConfigurer.Specification;
+namespace IdpConfigurer.Specification.Api;
 
 public interface IIdpApi
 {

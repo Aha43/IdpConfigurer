@@ -1,4 +1,4 @@
-﻿using IdpConfigurer.Specification;
+﻿using IdpConfigurer.Specification.Api;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IdpConfigurer.Infrastructure.Memory

@@ -1,6 +1,6 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.Idp;
-using IdpConfigurer.Specification;
+using IdpConfigurer.Specification.Api;
 using System.Runtime.Intrinsics.Arm;
 
 namespace IdpConfigurer.Infrastructure.Memory

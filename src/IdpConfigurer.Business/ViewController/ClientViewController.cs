@@ -2,7 +2,7 @@
 using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Domain.Param.Client;
-using IdpConfigurer.Specification;
+using IdpConfigurer.Specification.Api;
 using IdpConfigurer.Util;
 
 namespace IdpConfigurer.Business.ViewController;

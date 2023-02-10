@@ -1,4 +1,4 @@
-﻿using IdpConfigurer.Specification;
+﻿using IdpConfigurer.Specification.Api;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;

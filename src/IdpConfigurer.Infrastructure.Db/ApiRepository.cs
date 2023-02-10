@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.ApiScope;
-using IdpConfigurer.Specification;
+using IdpConfigurer.Specification.Api;
 
 namespace IdpConfigurer.Infrastructure.Db;
 

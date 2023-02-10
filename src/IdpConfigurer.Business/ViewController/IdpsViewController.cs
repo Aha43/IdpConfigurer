@@ -1,6 +1,6 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.Idp;
-using IdpConfigurer.Specification;
+using IdpConfigurer.Specification.Api;
 
 namespace IdpConfigurer.Business.ViewController
 {
