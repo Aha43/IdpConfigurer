@@ -8,6 +8,6 @@ public static class Services
 {
     public static IServiceCollection AddUtilities(this IServiceCollection services, IConfiguration configuration)
     {
-        return services.AddSingleton<ISharedGenerator, Sha256SharedSecretGenerator>();
+        return services.AddSingleton<ISharedSecretGenerator, Sha256SharedSecretGenerator>();
     }
 }

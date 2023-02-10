@@ -3,12 +3,11 @@ using System.Security.Cryptography;
 
 namespace IdpConfigurer.Util;
 
-public abstract class SharedGeneratorBase : ISharedGenerator
+public abstract class SharedGeneratorBase : ISharedSecretGenerator
 {
     public (string hash, string plainTextSecret, string? err) Generate(int length = 40)
     {
-        var bytes = RandomNumberGenerator.GetBytes(length);
-        var plainText = Convert.ToBase64String(bytes);
+        var plainText = GeneratePlainTextSecret(length);
         var (hash, err) = GenerateFromGivenPlainText(plainText);
         return (hash, plainText, err);
     }
@@ -27,6 +26,13 @@ public abstract class SharedGeneratorBase : ISharedGenerator
 
         var hash = Hash(plainTextSecret);
         return (hash, null);
+    }
+
+    public string GeneratePlainTextSecret(int length = 40)
+    {
+        var bytes = RandomNumberGenerator.GetBytes(length);
+        var plainText = Convert.ToBase64String(bytes);
+        return plainText;
     }
 
     protected abstract string Hash(string hash);

@@ -3,6 +3,7 @@ using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Specification.Api;
+using IdpConfigurer.Specification.Tool;
 using IdpConfigurer.Util;
 
 namespace IdpConfigurer.Business.ViewController;
@@ -11,6 +12,7 @@ public class ClientViewController
 {
     private readonly IClientApi _clientApi;
     private readonly IApiScopeApi _apiScopeApi;
+    private ISharedSecretGenerator _sharedSecretGenerator;
 
     public string? IdpName { get; private set; }
 
@@ -33,10 +35,12 @@ public class ClientViewController
 
     public ClientViewController(
         IClientApi clientApi,
-        IApiScopeApi apiScopeApi)
+        IApiScopeApi apiScopeApi,
+        ISharedSecretGenerator sharedSecretGenerator)
     {
         _clientApi = clientApi;
         _apiScopeApi = apiScopeApi;
+        _sharedSecretGenerator = sharedSecretGenerator;
     }
 
     #region Load
@@ -85,6 +89,10 @@ public class ClientViewController
             }
         }
     }
+    #endregion
+
+    #region SharedSecret
+
     #endregion
 
     #region redirectUris

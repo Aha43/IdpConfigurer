@@ -12,6 +12,20 @@
                 <MudButton OnClick="ViewController.SaveSettings">Save</MudButton>
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="Shared Secrets">
+            <MudStack>
+                @if (ViewController.Client != null)
+                {
+                    @foreach (var sharedSecret in ViewController.Client.ClientSecrets.Where(e => e.Type.Equals("SharedSecret")))
+                    {
+                        <MudStack Row="true" AlignItems="AlignItems.Center">
+                            <MudText>@sharedSecret.Description</MudText>
+                            <MudText>@sharedSecret.Value</MudText>
+                        </MudStack>
+                    }
+                }
+            </MudStack>
+        </MudExpansionPanel>
         <MudExpansionPanel Text="Grants / Flows">
             <MudStack>
                 <MudStack>

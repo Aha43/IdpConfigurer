@@ -1,7 +1,7 @@
 ﻿using IdpConfigurer.Business.ViewController;
 using IdpConfigurer.Infrastructure.Db;
 using IdpConfigurer.Infrastructure.Memory;
-using IdpConfigurer.Specification;
+using IdpConfigurer.Util;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +13,8 @@ public static class Services
     {
         return services
             .AddInfrastructure(configuration)
-            .AddViewControllers();
+            .AddViewControllers()
+            .AddUtilities(configuration);
     }
 
     private static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
