@@ -1,0 +1,21 @@
+﻿<MudStack>
+    <MudStack>
+        <MudTextField @bind-Value="ViewController.NewRedirectUri" Label="Redirect Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
+        <MudButton OnClick="ViewController.AddRedirectUriAsync">Add</MudButton>
+        @if (ViewController.RedirectUriErrorMessage != null)
+        {
+            <MudText Color="Color.Error">@ViewController.RedirectUriErrorMessage</MudText>
+        }
+    </MudStack>
+
+    @if (ViewController.Client != null)
+    {
+        foreach (var uri in ViewController.Client.RedirectUris)
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudText>@uri</MudText>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemoveRedirectUriAsync(uri)" />
+            </MudStack>
+        }
+    }
+</MudStack>

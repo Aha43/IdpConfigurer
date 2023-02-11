@@ -6,107 +6,12 @@
 <MudStack>
     <MudText Typo="Typo.h5">@ViewController.Client?.ClientName</MudText>
     <MudExpansionPanels>
-        <MudExpansionPanel Text="Settings">
-            <MudStack>
-                <MudCheckBox @bind-Checked="ViewController.AllowOfflineAccess" Label="AllowOfflineAccess"/>
-                <MudCheckBox @bind-Checked="ViewController.AlwaysIncludeUserClaimsInIdToken" Label="AlwaysIncludeUserClaimsInIdToken" />
-                <MudButton OnClick="ViewController.SaveSettings">Save</MudButton>
-            </MudStack>
-        </MudExpansionPanel>
+        <MudExpansionPanel Text="Settings"><ClientSettings/></MudExpansionPanel>
         <MudExpansionPanel Text="Shared Secrets"><ClientSharedSecrets/></MudExpansionPanel>
-        <MudExpansionPanel Text="Grants / Flows">
-            <MudStack>
-                <MudStack>
-                    <MudCheckBox @bind-Checked="ViewController.Hybrid" Label="Hybrid" />
-                    <MudCheckBox @bind-Checked="ViewController.ResourceOwnerPassword" Label="Password" />
-                    <MudCheckBox @bind-Checked="ViewController.Implicit" Label="Implicit" />
-                    <MudCheckBox @bind-Checked="ViewController.AuthorizationCode" Label="AuthorizationCode" />
-                    <MudCheckBox @bind-Checked="ViewController.ClientCredentials" Label="ClientCredentials" />
-                </MudStack>
-                <MudButton OnClick="ViewController.SaveGrantsFlows">Save</MudButton>
-            </MudStack>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="Redirect Uris">
-            <MudStack>
-                <MudStack>
-                    <MudTextField @bind-Value="ViewController.NewRedirectUri" Label="Redirect Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudButton OnClick="ViewController.AddRedirectUriAsync">Add</MudButton>
-                    @if (ViewController.RedirectUriErrorMessage != null)
-                    {
-                        <MudText Color="Color.Error">@ViewController.RedirectUriErrorMessage</MudText>
-                    }
-                </MudStack>
-               
-                @if (ViewController.Client != null)
-                {
-                    foreach (var uri in ViewController.Client.RedirectUris)
-                    {   
-                        <MudStack Row="true" AlignItems="AlignItems.Center">
-                            <MudText>@uri</MudText>
-                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemoveRedirectUriAsync(uri)" />
-                        </MudStack>       
-                    }
-                }
-            </MudStack>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="Post Logout Redirect Uris">
-            <MudStack>
-                <MudStack>
-                    <MudTextField @bind-Value="ViewController.NewPostLogoutRedirectUri" Label="Post Logout Redirect Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudButton OnClick="ViewController.AddPostLogoutRedirectUriAsync">Add</MudButton>
-                    @if (ViewController.PostLogoutRedirectUriErrorMessage != null)
-                    {
-                        <MudText Color="Color.Error">@ViewController.PostLogoutRedirectUriErrorMessage</MudText>
-                    }
-                </MudStack>
-                
-                @if (ViewController.Client != null)
-                {
-                    foreach (var uri in ViewController.Client.PostLogoutRedirectUris)
-                    {
-                        <MudStack Row="true" AlignItems="AlignItems.Center">
-                            <MudText>@uri</MudText>
-                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemovePostLogoutRedirectUriAsync(uri)" />
-                        </MudStack>
-                    }
-                }
-            </MudStack>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="Allowed Cors Origins Uri">
-            <MudStack>
-                <MudStack>
-                    <MudTextField @bind-Value="ViewController.NewAllowedCorsOriginsUri" Label="Allowed Cors Origins Uri" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudButton OnClick="ViewController.AddAllowedCorsOriginsUriAsync">Add</MudButton>
-                    @if (ViewController.AllowedCorsOriginsUriErrorMessage != null)
-                    {
-                        <MudText Color="Color.Error">@ViewController.AllowedCorsOriginsUriErrorMessage</MudText>
-                    }
-                </MudStack>
-
-                @if (ViewController.Client != null)
-                {
-                    foreach (var uri in ViewController.Client.AllowedCorsOrigins)
-                    {
-                        <MudStack Row="true" AlignItems="AlignItems.Center">
-                            <MudText>@uri</MudText>
-                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => ViewController.RemoveAllowedCorsOriginsUriAsync(uri)" />
-                        </MudStack>
-                    }
-                }
-
-            </MudStack>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="APIs">
-            <MudStack>
-                <MudStack>
-                    @for (int i = 0; i<ViewController.SelectedApiScopes.Length; i++)
-                    {
-                        int k = i;
-                        <MudCheckBox @bind-Checked="ViewController.SelectedApiScopes[k].Selected" Label="@ViewController.SelectedApiScopes[i].Title" />
-                    }
-                </MudStack>
-                <MudButton OnClick="ViewController.SaveApiSelection">Save</MudButton>
-            </MudStack>
-        </MudExpansionPanel>
+        <MudExpansionPanel Text="Grants / Flows"><GrantsFlows/></MudExpansionPanel>
+        <MudExpansionPanel Text="Redirect Uris"><RedirectUris/></MudExpansionPanel>
+        <MudExpansionPanel Text="Post Logout Redirect Uris"><PostLogoutRedirectUris/></MudExpansionPanel>
+        <MudExpansionPanel Text="Allowed Cors Origins Uri"><AllowedCorsOriginsUri/></MudExpansionPanel>
+        <MudExpansionPanel Text="APIs"><Apis/></MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>
