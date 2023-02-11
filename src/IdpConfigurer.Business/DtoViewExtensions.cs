@@ -14,7 +14,7 @@ public static class DtoViewExtensions
     public static string Title(this ClientSecret clientSecret)
     {
         var desc = string.IsNullOrEmpty(clientSecret.Description) ? "no description" : clientSecret.Description.Trim();
-        return $"{desc} {clientSecret.Value}";
+        return $"{desc} : {clientSecret.Value}";
     }
 
 }
