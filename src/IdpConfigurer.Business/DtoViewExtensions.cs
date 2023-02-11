@@ -10,4 +10,11 @@ public static class DtoViewExtensions
 
     public static string Title(this ApiScope apiScope) => string.IsNullOrWhiteSpace(apiScope.DisplayName) ? apiScope.Name : apiScope.DisplayName;
     public static string PageUri(this ApiScope apiScope, Idp idp) => $"/Idp/{idp.Name}/ApiScope/{apiScope.Name}";
+
+    public static string Title(this ClientSecret clientSecret)
+    {
+        var desc = string.IsNullOrEmpty(clientSecret.Description) ? "no description" : clientSecret.Description.Trim();
+        return $"{desc} {clientSecret.Value}";
+    }
+
 }

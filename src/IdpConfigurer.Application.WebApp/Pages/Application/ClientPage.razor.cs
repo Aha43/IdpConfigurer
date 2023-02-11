@@ -1,6 +1,4 @@
 using IdpConfigurer.Business.ViewController;
-using IdpConfigurer.Business.ViewModel;
-using IdpConfigurer.Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace IdpConfigurer.Application.WebApp.Pages.Application;

@@ -8,7 +8,7 @@ using IdpConfigurer.Util;
 
 namespace IdpConfigurer.Business.ViewController;
 
-public class ClientViewController
+public partial class ClientViewController
 {
     private readonly IClientApi _clientApi;
     private readonly IApiScopeApi _apiScopeApi;
@@ -89,10 +89,6 @@ public class ClientViewController
             }
         }
     }
-    #endregion
-
-    #region SharedSecret
-
     #endregion
 
     #region redirectUris
