@@ -7,6 +7,7 @@
 
         public ICollection<ClientSecret> ClientSecrets = new List<ClientSecret>();
 
+        public bool RequirePkce { get; set; } = false;
         public bool AllowOfflineAccess { get; set; } = false;
         public bool AlwaysIncludeUserClaimsInIdToken { get; set; } = false;
 

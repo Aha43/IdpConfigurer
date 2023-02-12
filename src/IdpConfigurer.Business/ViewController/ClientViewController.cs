@@ -37,23 +37,11 @@ public partial class ClientViewController
         var readClientParam = new ReadClientParam { IdpName = idpName, ClientId = clientId };
         Client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
 
-        AllowOfflineAccess = Client.AllowOfflineAccess;
-        AlwaysIncludeUserClaimsInIdToken = Client.AlwaysIncludeUserClaimsInIdToken;
+        SetSettings(Client);
 
         await LoadApiScopes(idpName, Client, cancellationToken).ConfigureAwait(false);
 
         SetGrantsFlows(Client);
-    }
-
-    private async Task LoadApiScopes(string idpName, Client client, CancellationToken cancellationToken)
-    {
-        var readApiScopesParam = new ReadApiScopesParam { IdpName = idpName };
-        var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
-        SelectedApiScopes = apis.Select(e => new ApiScopeViewModel
-        {
-            ApiScope = e,
-            Selected = client.AllowedScopes.Contains(e.Name)
-        }).ToArray();
     }
 
     private async Task UpdateClient(CancellationToken cancellationToken)
