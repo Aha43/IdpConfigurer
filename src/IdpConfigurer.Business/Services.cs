@@ -34,7 +34,8 @@ public static class Services
         return services
             .AddSingleton<IdpViewController>()
             .AddSingleton<IdpsViewController>()
-            .AddSingleton<ClientViewController>();
+            .AddSingleton<ClientViewController>()
+            .AddSingleton<ApiScopeViewController>();
     }
 
 }

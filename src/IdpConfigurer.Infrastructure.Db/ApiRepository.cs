@@ -16,7 +16,7 @@ public class ApiScopeRepository : IApiScopeApi
         using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
-        dp.Add("@ipdName", param.IdpName);
+        dp.Add("@IdpName", param.IdpName);
         dp.Add("@Name", param.Name);
         dp.Add("@displayName", param.DisplayName);
 
@@ -29,7 +29,7 @@ public class ApiScopeRepository : IApiScopeApi
         using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
-        dp.Add("@ipdName", param.IdpName);
+        dp.Add("@IdpName", param.IdpName);
         dp.Add("@Name", param.Name);
 
         await con.ExecuteAsync("idpc.CreateApi", commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
@@ -40,7 +40,7 @@ public class ApiScopeRepository : IApiScopeApi
         using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
-        dp.Add("@ipdName", param.IdpName);
+        dp.Add("@IdpName", param.IdpName);
         dp.Add("@Name", param.Name);
 
         var result = await con.QueryAsync<ApiScope>("idpc.ReadApi", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
@@ -52,7 +52,7 @@ public class ApiScopeRepository : IApiScopeApi
         using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
-        dp.Add("@idpName", param.IdpName);
+        dp.Add("@IdpName", param.IdpName);
 
         var retVal = await con.QueryAsync<ApiScope>("idpc.ReadApis", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
         return retVal;
@@ -63,7 +63,7 @@ public class ApiScopeRepository : IApiScopeApi
         using var con = _connectionProvider.Connection();
 
         var dp = new DynamicParameters();
-        dp.Add("@ipdName", param.IdpName);
+        dp.Add("@IdpName", param.IdpName);
         dp.Add("@Name", param.ApiScope.Name);
         dp.Add("@displayName", param.ApiScope.DisplayName);
 
