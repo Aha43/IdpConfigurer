@@ -1,7 +1,20 @@
 ﻿@page "/Idp/{IdpName}/ApiScope/{Name}"
+@using IdpConfigurer.Business;
 
 <MudText Typo="Typo.h3">API</MudText>
 
 <MudStack>
     <MudText Typo="Typo.h5">@ViewController.ApiScope?.Name</MudText>
+    <MudExpansionPanels>
+        <MudExpansionPanel Text="Clients">
+            <MudList>
+                @foreach (var client in ViewController.Clients)
+                {
+                    <MudListItem>
+                        <MudLink Href="@client.PageUri(ViewController.IdpName!)">@client.ClientName</MudLink>
+                    </MudListItem>
+                }
+            </MudList>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
 </MudStack>
