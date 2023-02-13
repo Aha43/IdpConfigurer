@@ -17,4 +17,11 @@
             </MudList>
         </MudExpansionPanel>
     </MudExpansionPanels>
+    <MudStack>
+        @if (!ViewController.Deletable)
+        {
+            <MudText Color="Color.Warning">This API scope can not be deleted as it is used by client(s) : Open Clients panel to see which</MudText>
+        }
+        <MudButton Disabled="!ViewController.Deletable">Delete</MudButton>
+    </MudStack>
 </MudStack>

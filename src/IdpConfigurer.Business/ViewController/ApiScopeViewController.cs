@@ -16,6 +16,8 @@ namespace IdpConfigurer.Business.ViewController
 
         public IEnumerable<Client> Clients { get; private set; } = Enumerable.Empty<Client>();
 
+        public bool Deletable => !Clients.Any();
+
         public ApiScopeViewController(
             IApiScopeApi apiScopeApi,
             IClientApi clientApi)
