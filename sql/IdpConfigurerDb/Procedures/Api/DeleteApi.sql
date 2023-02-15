@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [idpc].[DeleteApi]
-	@idpName nvarchar(40),
-	@name nvarchar(40)
+	@IdpName nvarchar(40),
+	@Name nvarchar(40)
 AS
-	DELETE [idpc].[Api] WHERE [IdpName] = @idpName AND [Name] = @name
+	DELETE [idpc].[Api] WHERE [IdpName] = @IdpName AND [Name] = @Name
 RETURN 0
 GO

@@ -4,24 +4,31 @@
 <MudText Typo="Typo.h3">API</MudText>
 
 <MudStack>
-    <MudText Typo="Typo.h5">@ViewController.ApiScope?.Name</MudText>
-    <MudExpansionPanels>
-        <MudExpansionPanel Text="Clients">
-            <MudList>
-                @foreach (var client in ViewController.Clients)
-                {
-                    <MudListItem>
-                        <MudLink Href="@client.PageUri(ViewController.IdpName!)">@client.ClientName</MudLink>
-                    </MudListItem>
-                }
-            </MudList>
-        </MudExpansionPanel>
-    </MudExpansionPanels>
-    <MudStack>
-        @if (!ViewController.Deletable)
-        {
-            <MudText Color="Color.Warning">This API scope can not be deleted as it is used by client(s) : Open Clients panel to see which</MudText>
-        }
-        <MudButton Disabled="!ViewController.Deletable">Delete</MudButton>
-    </MudStack>
+    @if (ViewController.Deleted)
+    {
+        <MudText Typo="Typo.h5">Api Scope Deleted</MudText>
+    }
+    else
+    {
+        <MudText Typo="Typo.h5">@ViewController.ApiScope?.Name</MudText>
+        <MudExpansionPanels>
+            <MudExpansionPanel Text="Clients">
+                <MudList>
+                    @foreach (var client in ViewController.Clients)
+                    {
+                        <MudListItem>
+                            <MudLink Href="@client.PageUri(ViewController.IdpName!)">@client.ClientName</MudLink>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+        <MudStack>
+            @if (!ViewController.Deletable)
+            {
+                <MudText Color="Color.Warning">This API scope can not be deleted as it is used by client(s) : Open Clients panel to see which.</MudText>
+            }
+            <MudButton Disabled="!ViewController.Deletable" OnClick="ViewController.DeleteAsync">Delete</MudButton>
+        </MudStack>
+    }
 </MudStack>

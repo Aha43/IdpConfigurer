@@ -10,6 +10,8 @@ namespace IdpConfigurer.Business.ViewController
         private readonly IApiScopeApi _apiScopeApi;
         private readonly IClientApi _clientApi;
 
+        public bool Deleted { get; private set; } = false;
+
         public string? IdpName { get; private set; }
 
         public ApiScope? ApiScope { get; private set; }
@@ -37,6 +39,17 @@ namespace IdpConfigurer.Business.ViewController
             var readClientsParam = new ReadClientsParam { IdpName = idpName };
             var clients = await _clientApi.ReadClientsAsync(readClientsParam, cancellationToken).ConfigureAwait(false);
             Clients = clients.Where(e => e.AllowedScopes.Contains(apiName)).ToList();
+        }
+
+        public async Task DeleteAsync() => await DeleteAsync(default).ConfigureAwait(false);
+        public async Task DeleteAsync(CancellationToken cancellationToken)
+        {
+            if (ApiScope == null) return;
+            if (!Deletable) return;
+
+            var param = new DeleteApiScopeParam { IdpName = IdpName, Name = ApiScope.Name };
+            await _apiScopeApi.DeleteApiScopeAsync(param, cancellationToken).ConfigureAwait(false);
+            Deleted = true; 
         }
 
     }
