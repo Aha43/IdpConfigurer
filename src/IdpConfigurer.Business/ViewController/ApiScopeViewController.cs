@@ -44,7 +44,7 @@ namespace IdpConfigurer.Business.ViewController
         public async Task DeleteAsync() => await DeleteAsync(default).ConfigureAwait(false);
         public async Task DeleteAsync(CancellationToken cancellationToken)
         {
-            if (ApiScope == null) return;
+            if (ApiScope == null || IdpName == null) return;
             if (!Deletable) return;
 
             var param = new DeleteApiScopeParam { IdpName = IdpName, Name = ApiScope.Name };
