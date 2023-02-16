@@ -1,4 +1,5 @@
-﻿using IdpConfigurer.Domain;
+﻿using IdpConfigurer.Business.ViewModel;
+using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Domain.Param.Idp;
@@ -20,7 +21,7 @@ namespace IdpConfigurer.Business.ViewController
         private readonly List<ApiScope> _apiScopes = new();
         public IEnumerable<ApiScope> ApiScopes => _apiScopes.AsEnumerable();
 
-        public IdpCustomField[] CustomFields { get; private set; } = Array.Empty<IdpCustomField>();
+        public IdpCustomFieldViewModel[] CustomFields { get; private set; } = Array.Empty<IdpCustomFieldViewModel>();
 
         public IdpViewController(
             IIdpApi idpApi,
@@ -48,7 +49,7 @@ namespace IdpConfigurer.Business.ViewController
             var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
             _apiScopes.AddRange(apis);
 
-            CustomFields = Idp.Data.CustomData.CustomFields.ToArray();
+            CustomFields = Idp.Data.CustomData.CustomFields.Select(e => new IdpCustomFieldViewModel(e)).ToArray();
         }
 
         public bool EditIdpName { get; set; }

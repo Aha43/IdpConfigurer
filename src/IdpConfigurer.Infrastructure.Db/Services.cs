@@ -28,11 +28,6 @@ public static class Services
 public class ConnectionProvider
 {
     private readonly string _connectionString;
-
     public ConnectionProvider(string connectionString) => _connectionString = connectionString;
-
-    public DbConnection Connection()
-    {
-        return new SqlConnection(_connectionString);
-    }
+    public DbConnection Connection() => new SqlConnection(_connectionString);
 }

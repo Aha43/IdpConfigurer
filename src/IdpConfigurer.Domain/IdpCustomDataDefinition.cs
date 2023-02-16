@@ -1,8 +1,20 @@
-﻿namespace IdpConfigurer.Domain
+﻿using System.Text;
+
+namespace IdpConfigurer.Domain
 {
     public record class IdpCustomDataDefinition
     {
-        public IEnumerable<IdpCustomFieldDefinition> FieldDefinitions { get; set; } = Enumerable.Empty<IdpCustomFieldDefinition>();
+        private List<IdpCustomFieldDefinition> _fields = new();
+        public IEnumerable<IdpCustomFieldDefinition> FieldDefinitions 
+        {
+            get => _fields.AsEnumerable(); 
+            set
+            {
+                Evaluate(value);
+                _fields.Clear();
+                _fields.AddRange(value);
+            }
+        } 
 
         public IdpCustomData Create()
         {
@@ -10,6 +22,22 @@
             {
                 CustomFields = FieldDefinitions.Select(e => e.CreateField())
             };
+        }
+
+        private static void Evaluate(IEnumerable<IdpCustomFieldDefinition> fields)
+        {
+            var sb = new StringBuilder();
+            var set = new HashSet<string>();
+            foreach (var field in fields) 
+            { 
+                if (set.Contains(field.Name)) sb.Append(field.Name).Append(' ');
+                set.Add(field.Name);
+            }
+
+            if (sb.Length > 0) 
+            {
+                throw new ArgumentException($"Duplicate Idp custom field names: {sb}");
+            }
         }
 
     }
