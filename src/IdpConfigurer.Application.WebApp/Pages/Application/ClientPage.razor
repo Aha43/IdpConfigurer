@@ -3,15 +3,24 @@
 
 <MudText Typo="Typo.h3">Client</MudText>
 
-<MudStack>
-    <MudText Typo="Typo.h5">@ViewController.Client?.ClientName</MudText>
-    <MudExpansionPanels>
-        <MudExpansionPanel Text="Settings"><ClientSettings/></MudExpansionPanel>
-        <MudExpansionPanel Text="Shared Secrets"><ClientSharedSecrets/></MudExpansionPanel>
-        <MudExpansionPanel Text="Grants / Flows"><GrantsFlows/></MudExpansionPanel>
-        <MudExpansionPanel Text="Redirect Uris"><RedirectUris/></MudExpansionPanel>
-        <MudExpansionPanel Text="Post Logout Redirect Uris"><PostLogoutRedirectUris/></MudExpansionPanel>
-        <MudExpansionPanel Text="Allowed Cors Origins Uri"><AllowedCorsOriginsUri/></MudExpansionPanel>
-        <MudExpansionPanel Text="APIs"><Apis/></MudExpansionPanel>
-    </MudExpansionPanels>
-</MudStack>
+@if (ViewController.Deleted)
+{
+    <MudText Typo="Typo.h5">Client Deleted</MudText>
+}
+else
+{
+    <MudStack>
+        <MudText Typo="Typo.h5">@ViewController.Client?.ClientName</MudText>
+        <MudExpansionPanels>
+            <MudExpansionPanel Text="Settings"><ClientSettings /></MudExpansionPanel>
+            <MudExpansionPanel Text="Shared Secrets"><ClientSharedSecrets /></MudExpansionPanel>
+            <MudExpansionPanel Text="Grants / Flows"><GrantsFlows /></MudExpansionPanel>
+            <MudExpansionPanel Text="Redirect Uris"><RedirectUris /></MudExpansionPanel>
+            <MudExpansionPanel Text="Post Logout Redirect Uris"><PostLogoutRedirectUris /></MudExpansionPanel>
+            <MudExpansionPanel Text="Allowed Cors Origins Uri"><AllowedCorsOriginsUri /></MudExpansionPanel>
+            <MudExpansionPanel Text="APIs"><Apis /></MudExpansionPanel>
+        </MudExpansionPanels>
+        <MudButton OnClick="ViewController.DeleteAsync">Delete</MudButton>
+    </MudStack>
+}
+
