@@ -1,4 +1,4 @@
-# Identity Provider Configurer Web Application
+# Identity Provider Configurer
 
 **In a *work in progress* state!**
 
