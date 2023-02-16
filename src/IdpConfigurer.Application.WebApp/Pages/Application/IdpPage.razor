@@ -53,5 +53,14 @@
                 </MudList>
             </MudStack>
         </MudExpansionPanel>
+        <MudExpansionPanel Text="Custom Data">
+            <MudStack>
+                @for (var i = 0; i < ViewController.CustomFields.Length; i++)
+                {
+                    var j = i;
+                    <MudText>@ViewController.CustomFields[j].Name</MudText>
+                }
+            </MudStack>
+        </MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>

@@ -1,6 +1,7 @@
-﻿namespace IdpConfigurer.Domain;
-
-public class IdpCustomData
+﻿namespace IdpConfigurer.Domain
 {
-    // Placeholder for now...
+    public record class IdpCustomData
+    {
+        public IEnumerable<IdpCustomField> CustomFields { get; set; } = Enumerable.Empty<IdpCustomField>();
+    }
 }

@@ -20,6 +20,8 @@ namespace IdpConfigurer.Business.ViewController
         private readonly List<ApiScope> _apiScopes = new();
         public IEnumerable<ApiScope> ApiScopes => _apiScopes.AsEnumerable();
 
+        public IdpCustomField[] CustomFields { get; private set; } = Array.Empty<IdpCustomField>();
+
         public IdpViewController(
             IIdpApi idpApi,
             IClientApi clientApi,
@@ -45,6 +47,8 @@ namespace IdpConfigurer.Business.ViewController
             var readApiScopesParam = new ReadApiScopesParam { IdpName = name };
             var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
             _apiScopes.AddRange(apis);
+
+            CustomFields = Idp.Data.CustomData.CustomFields.ToArray();
         }
 
         public bool EditIdpName { get; set; }

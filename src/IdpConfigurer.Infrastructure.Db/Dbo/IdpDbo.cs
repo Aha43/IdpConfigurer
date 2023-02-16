@@ -19,7 +19,7 @@ public static class IdpDboExtensions
         {
             Name = dto.Name,
             Uri = dto.Uri,
-            Json = JsonConvert.SerializeObject(dto.CustomData)
+            Json = JsonConvert.SerializeObject(dto.Data)
         };
     }
 
@@ -36,7 +36,7 @@ public static class IdpDboExtensions
 
     public static Idp ToDto(this IdpDbo dbo)
     {
-        var cd = JsonConvert.DeserializeObject<IdpCustomData>(dbo.Json);
+        var cd = JsonConvert.DeserializeObject<IdpData>(dbo.Json);
         if (cd == null) 
         {
             throw new ArgumentException("Deseralizing Idp custom data yield null");
@@ -46,7 +46,7 @@ public static class IdpDboExtensions
         {
             Name = dbo.Name,
             Uri = dbo.Uri,
-            CustomData = cd
+            Data = cd
         };
     }
 
