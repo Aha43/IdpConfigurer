@@ -44,6 +44,8 @@ public partial class ClientViewController
         SetGrantsFlows(Client);
     }
 
+    private async Task UpdateClient() => await UpdateClient(default).ConfigureAwait(false);
+
     private async Task UpdateClient(CancellationToken cancellationToken)
     {
         if (IdpName == null) return;

@@ -103,6 +103,17 @@ namespace IdpConfigurer.Business.ViewController
             NewApiScopeDisplayName = null;
         }
 
+        public async Task Update() => await Update(default).ConfigureAwait(true);
+
+        public async Task Update(CancellationToken cancellationToken)
+        {
+            if (Idp == null) return;
+
+            var updateParam = new UpdateIdpParam { Idp = Idp };
+            var updated = await _idpApi.UpdateIdpAsync(updateParam, cancellationToken);
+            Idp = updated;
+        }
+
         private async Task Update(string? newName = null, CancellationToken cancellationToken = default)
         {
             if (Idp == null) return;
