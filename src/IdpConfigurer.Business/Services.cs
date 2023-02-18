@@ -22,24 +22,28 @@ public static class Services
 
     private static IServiceCollection AddCustomIdpDataDefinition(this IServiceCollection services, IConfiguration configuration)
     {
-        var list = new List<IdpCustomFieldDefinition>
-        {
-            new IdpCustomFieldDefinition
-            {
-                Name = "Val1",
-                Type = "string"
-            },
-            new IdpCustomFieldDefinition
-            {
-                Name = "Val2",
-                Type = "bool"
-            }
-        };
+        var definitions = configuration.GetSectionAs<IdpCustomDataDefinition>();
+        if (definitions == null) definitions = new();
+        return services.AddSingleton(definitions);
+
+        //var list = new List<IdpCustomFieldDefinition>
+        //{
+        //    new IdpCustomFieldDefinition
+        //    {
+        //        Name = "Val1",
+        //        Type = "string"
+        //    },
+        //    new IdpCustomFieldDefinition
+        //    {
+        //        Name = "Val2",
+        //        Type = "bool"
+        //    }
+        //};
 
 
-        var def = new IdpCustomDataDefinition { FieldDefinitions = list };
+        //var def = new IdpCustomDataDefinition { FieldDefinitions = list };
 
-        return services.AddSingleton(def);
+        //return services.AddSingleton(def);
     }
 
     private static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
