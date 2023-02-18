@@ -24,14 +24,15 @@ namespace IdpConfigurer.Domain
             };
         }
 
-        public bool IfDefinesThenUpdate(IdpCustomField field)
+        public (bool defines, bool updated) IfDefinesThenUpdate(IdpCustomField field)
         {
             foreach (var fieldDef in FieldDefinitions) 
             {
-                if (fieldDef.IfDefinesThenUpdate(field)) return true;
+                var res = fieldDef.IfDefinesThenUpdate(field);
+                if (res.defines) return res;
             }
 
-            return false;
+            return (false, false);
         }
 
         private static void Evaluate(IEnumerable<IdpCustomFieldDefinition> fields)

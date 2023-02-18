@@ -13,6 +13,8 @@ namespace IdpConfigurer.Business.ViewController
         private readonly IClientApi _clientApi;
         private readonly IApiScopeApi _apiScopeApi;
 
+        private readonly IdpCustomDataDefinition _idpCustomDataDefinition;
+
         public Idp? Idp { get; private set; }
 
         private readonly List<Client> _clients = new();
@@ -26,11 +28,13 @@ namespace IdpConfigurer.Business.ViewController
         public IdpViewController(
             IIdpApi idpApi,
             IClientApi clientApi,
-            IApiScopeApi apiScopeApi)
+            IApiScopeApi apiScopeApi,
+            IdpCustomDataDefinition idpCustomDataDefinition)
         {
             _idpApi = idpApi;
             _clientApi = clientApi;
             _apiScopeApi = apiScopeApi;
+            _idpCustomDataDefinition = idpCustomDataDefinition;
         }
 
         public async Task LoadAsync(string name) => await LoadAsync(name, default).ConfigureAwait(false);
@@ -49,6 +53,10 @@ namespace IdpConfigurer.Business.ViewController
             var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
             _apiScopes.AddRange(apis);
 
+            if (Idp.Data.CustomData.Update(_idpCustomDataDefinition))
+            {
+                await Update(cancellationToken).ConfigureAwait(false);
+            }
             CustomFields = Idp.Data.CustomData.CustomFields.Select(e => new IdpCustomFieldViewModel(e)).ToArray();
         }
 

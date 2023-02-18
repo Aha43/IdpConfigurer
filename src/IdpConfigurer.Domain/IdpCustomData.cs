@@ -7,27 +7,38 @@
         public bool ContainsFieldDefinedBy(IdpCustomFieldDefinition def) => 
             CustomFields.Where(e => e.DefinedBy(def)).Any();
 
-        public void Update(IdpCustomDataDefinition definition)
+        public bool Update(IdpCustomDataDefinition definition)
         {
             var l = new List<IdpCustomField>();
 
-            // Find the ones to keep
+            // Find the ones to keep and update if def changed
+
+            bool fieldUpdated = false;
+
             foreach (var field in CustomFields) 
             {
-                if (definition.IfDefinesThenUpdate(field))
-                {
-                    l.Add(field);
-                }
+                var (defines, updated) = definition.IfDefinesThenUpdate(field);
+                if (defines) l.Add(field);
+                if (updated) fieldUpdated = true;
             }
 
             // Find new ones to add
+
+            bool fieldAdded = false;
             foreach (var def in definition.FieldDefinitions) 
             {
                 if (!ContainsFieldDefinedBy(def)) 
                 {
                     l.Add(def.CreateField());
+                    fieldAdded = true;
                 }
             }
+
+            CustomFields = l.AsEnumerable();
+
+            var retVal = fieldUpdated || fieldAdded;
+
+            return retVal;
         }
 
     }
