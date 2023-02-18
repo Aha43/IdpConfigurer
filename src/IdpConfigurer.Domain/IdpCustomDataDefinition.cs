@@ -24,6 +24,16 @@ namespace IdpConfigurer.Domain
             };
         }
 
+        public bool IfDefinesThenUpdate(IdpCustomField field)
+        {
+            foreach (var fieldDef in FieldDefinitions) 
+            {
+                if (fieldDef.IfDefinesThenUpdate(field)) return true;
+            }
+
+            return false;
+        }
+
         private static void Evaluate(IEnumerable<IdpCustomFieldDefinition> fields)
         {
             var sb = new StringBuilder();
@@ -38,7 +48,7 @@ namespace IdpConfigurer.Domain
             {
                 throw new ArgumentException($"Duplicate Idp custom field names: {sb}");
             }
-        }
+        } 
 
     }
 

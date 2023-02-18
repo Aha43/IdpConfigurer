@@ -19,6 +19,18 @@
             };
         }
 
+        public bool IfDefinesThenUpdate(IdpCustomField field) 
+        { 
+            if (Name.Equals(field.Name) && Type.Equals(field.Type))
+            { 
+                field.Description = Description;
+                field.Default = Default;
+                return true;
+            }
+
+            return false;
+        }
+
     }
 
 }
