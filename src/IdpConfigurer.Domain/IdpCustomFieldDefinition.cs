@@ -24,12 +24,12 @@
             if (Name.Equals(field.Name) && Type.Equals(field.Type))
             {
                 bool updated = false;
-                if (field.Description.Equals(Description))
+                if (!field.Description.Equals(Description))
                 {
                     field.Description = Description;
                     updated = true;
                 }
-                if (field.Default.Equals(Default))
+                if (!field.Default.Equals(Default))
                 {
                     field.Description = Default;
                     updated = true;
