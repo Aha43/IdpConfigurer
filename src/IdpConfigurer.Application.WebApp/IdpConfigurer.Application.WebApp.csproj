@@ -16,8 +16,4 @@
     <ProjectReference Include="..\IdpConfigurer.Business\IdpConfigurer.Business.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Application\Idp\" />
-  </ItemGroup>
-
 </Project>

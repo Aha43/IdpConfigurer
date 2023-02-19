@@ -1,5 +1,6 @@
 ﻿@page "/Idp/{IdpName}"
 
+@using IdpConfigurer.Application.WebApp.Pages.Application.Components.Idp
 @using IdpConfigurer.Business;
 
 <MudText Typo="Typo.h3">Identity Provider</MudText>
@@ -19,59 +20,9 @@
         }
     </MudStack>
     <MudExpansionPanels>
-        <MudExpansionPanel Text="Clients">
-            <MudStack>
-                <MudStack>
-                    <MudTextField @bind-Value="ViewController.NewClientId" Label="Client Id" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudTextField @bind-Value="ViewController.NewClientName" Label="Client Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudButton OnClick="ViewController.CreateClientAsync">Add</MudButton>
-                </MudStack>
-                <MudList>
-                    @foreach (var client in ViewController.Clients)
-                    {
-                        <MudListItem>
-                            <MudLink Href="@client.PageUri(ViewController.Idp!)">@client.ClientName</MudLink>
-                        </MudListItem>
-                    }
-                </MudList>
-            </MudStack>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="APIs">
-            <MudStack>
-                <MudStack>
-                    <MudTextField @bind-Value="ViewController.NewApiScopeName" Label="API Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudTextField @bind-Value="ViewController.NewApiScopeDisplayName" Label="Display name" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                    <MudButton OnClick="ViewController.CreateApiScope">Add</MudButton>
-                </MudStack>
-                <MudList>
-                    @foreach (var api in ViewController.ApiScopes)
-                    {
-                        <MudListItem>
-                            <MudLink Href="@api.PageUri(ViewController.Idp!)">@api.Title()</MudLink>
-                        </MudListItem>
-                    }
-                </MudList>
-            </MudStack>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="Custom Data">
-            <MudStack>
-                @for (var i = 0; i < ViewController.CustomFields.Length; i++)
-                {
-                    var j = i;
-                    <MudStack Row="true" AlignItems="AlignItems.Center">
-                        <MudText>@ViewController.CustomFields[j].Model.Name</MudText>
-                        @if (@ViewController.CustomFields[j].Model.Type.Equals("bool"))
-                        {
-                            <MudCheckBox @bind-Checked="ViewController.CustomFields[j].BoolValue" />
-                        }
-                        else if (@ViewController.CustomFields[j].Model.Type.Equals("string"))
-                        {
-                            <MudTextField @bind-Value="ViewController.CustomFields[j].Model.Value"/>
-                        }
-                    </MudStack>
-                }
-                <MudButton OnClick="ViewController.Update">Save</MudButton>
-            </MudStack>
-        </MudExpansionPanel>
+        <MudExpansionPanel Text="Clients"><Clients /></MudExpansionPanel>
+        <MudExpansionPanel Text="APIs"><Apis /></MudExpansionPanel>
+        <MudExpansionPanel Text="Custom Data"><CustomData /></MudExpansionPanel>
+        <MudExpansionPanel Text="Properties"><Properties /></MudExpansionPanel>
     </MudExpansionPanels>
 </MudStack>

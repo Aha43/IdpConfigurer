@@ -1,0 +1,18 @@
+﻿<MudStack>
+    @for (var i = 0; i < ViewController.CustomFields.Length; i++)
+    {
+        var j = i;
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudText>@ViewController.CustomFields[j].Model.Name</MudText>
+            @if (@ViewController.CustomFields[j].Model.Type.Equals("bool"))
+            {
+                <MudCheckBox @bind-Checked="ViewController.CustomFields[j].BoolValue" />
+            }
+            else if (@ViewController.CustomFields[j].Model.Type.Equals("string"))
+            {
+                <MudTextField @bind-Value="ViewController.CustomFields[j].Model.Value"/>
+            }
+        </MudStack>
+    }
+    <MudButton OnClick="ViewController.Update">Save</MudButton>
+</MudStack>
