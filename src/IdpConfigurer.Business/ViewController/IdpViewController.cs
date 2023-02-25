@@ -4,6 +4,7 @@ using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Specification.Api;
+using System.Threading;
 
 namespace IdpConfigurer.Business.ViewController
 {
@@ -39,25 +40,32 @@ namespace IdpConfigurer.Business.ViewController
 
         public async Task LoadAsync(string name) => await LoadAsync(name, default).ConfigureAwait(false);
         public async Task LoadAsync(string name, CancellationToken cancellationToken = default)
-        {
+        {   
+            Idp = null;
+
             var readIdParam = new ReadIdpParam { Name = name };
-            Idp = await _idpApi.ReadIdpAsync(readIdParam, cancellationToken).ConfigureAwait(false);
+            var idp = await _idpApi.ReadIdpAsync(readIdParam, cancellationToken).ConfigureAwait(false);
 
-            _clients.Clear();
-            var readClientsParam = new ReadClientsParam { IdpName = name };
-            var clients = await _clientApi.ReadClientsAsync(readClientsParam, cancellationToken).ConfigureAwait(false);
-            _clients.AddRange(clients);
-
-            _apiScopes.Clear();
-            var readApiScopesParam = new ReadApiScopesParam { IdpName = name };
-            var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
-            _apiScopes.AddRange(apis);
-
-            if (Idp.Data.CustomData.Update(_idpCustomDataDefinition))
+            if (idp != null) 
             {
-                await Update(cancellationToken).ConfigureAwait(false);
+                _clients.Clear();
+                var readClientsParam = new ReadClientsParam { IdpName = name };
+                var clients = await _clientApi.ReadClientsAsync(readClientsParam, cancellationToken).ConfigureAwait(false);
+                _clients.AddRange(clients);
+
+                _apiScopes.Clear();
+                var readApiScopesParam = new ReadApiScopesParam { IdpName = name };
+                var apis = await _apiScopeApi.ReadApiScopesAsync(readApiScopesParam, cancellationToken).ConfigureAwait(false);
+                _apiScopes.AddRange(apis);
+
+                if (idp.Data.CustomData.Update(_idpCustomDataDefinition))
+                {
+                    await Update(cancellationToken).ConfigureAwait(false);
+                }
+                CustomFields = idp.Data.CustomData.CustomFields.Select(e => new IdpCustomFieldViewModel(e)).ToArray();
+
+                Idp = idp;
             }
-            CustomFields = Idp.Data.CustomData.CustomFields.Select(e => new IdpCustomFieldViewModel(e)).ToArray();
         }
 
         public bool EditIdpName { get; set; }

@@ -10,9 +10,7 @@ namespace IdpConfigurer.Business.ViewController
 
         private readonly IdpCustomDataDefinition _idpCustomDataDefinition;
 
-        private readonly List<Idp> _idps = new();
-
-        public IEnumerable<Idp> Idps => _idps.AsEnumerable();
+        public List<Idp>? Idps { get; private set; } = null;
 
         public IdpsViewController(IIdpApi idpApi, IdpCustomDataDefinition idpCustomDataDefinition)
         {
@@ -24,8 +22,7 @@ namespace IdpConfigurer.Business.ViewController
         public async Task LoadAsync(CancellationToken cancellationToken)
         {
             var idps = await _idpApi.ReadIdpsAsync(cancellationToken).ConfigureAwait(false);
-            _idps.Clear();
-            _idps.AddRange(idps);
+            Idps = idps.ToList();
         }
 
         public string? NameToNewIdp { get; set; } = string.Empty;
@@ -44,7 +41,7 @@ namespace IdpConfigurer.Business.ViewController
                 var updateParam = new UpdateIdpParam { IdpName = created.Name, Idp = created };
                 var updated = await _idpApi.UpdateIdpAsync(updateParam, cancellationToken).ConfigureAwait(false);
 
-                _idps.Add(updated);
+                Idps?.Add(updated);
             }
 
             NameToNewIdp = string.Empty;

@@ -14,7 +14,7 @@ namespace IdpConfigurer.Business.ViewController
 
         public string? IdpName { get; private set; }
 
-        public ApiScope? ApiScope { get; private set; }
+        public ApiScope? ApiScope { get; private set; } = null;
 
         public IEnumerable<Client> Clients { get; private set; } = Enumerable.Empty<Client>();
 
@@ -34,11 +34,13 @@ namespace IdpConfigurer.Business.ViewController
             IdpName = idpName;
 
             var readApiScopeParam = new ReadApiScopeParam { IdpName = idpName, Name = apiName };
-            ApiScope = await _apiScopeApi.ReadApiScopeAsync(readApiScopeParam, cancellationToken).ConfigureAwait(false);
+            var apiScope = await _apiScopeApi.ReadApiScopeAsync(readApiScopeParam, cancellationToken).ConfigureAwait(false);
 
             var readClientsParam = new ReadClientsParam { IdpName = idpName };
             var clients = await _clientApi.ReadClientsAsync(readClientsParam, cancellationToken).ConfigureAwait(false);
             Clients = clients.Where(e => e.AllowedScopes.Contains(apiName)).ToList();
+
+            ApiScope = apiScope;
         }
 
         public async Task DeleteAsync() => await DeleteAsync(default).ConfigureAwait(false);

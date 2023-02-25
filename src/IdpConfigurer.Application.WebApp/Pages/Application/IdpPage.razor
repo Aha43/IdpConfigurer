@@ -19,10 +19,14 @@
             </MudStack>
         }
     </MudStack>
-    <MudExpansionPanels>
-        <MudExpansionPanel Text="Clients"><Clients /></MudExpansionPanel>
-        <MudExpansionPanel Text="APIs"><Apis /></MudExpansionPanel>
-        <MudExpansionPanel Text="Custom Data"><CustomData /></MudExpansionPanel>
-        <MudExpansionPanel Text="Properties"><Properties /></MudExpansionPanel>
-    </MudExpansionPanels>
+    @if (ViewController.Idp != null)
+    {
+        <MudExpansionPanels>
+            <MudExpansionPanel Text="Clients"><Clients /></MudExpansionPanel>
+            <MudExpansionPanel Text="APIs"><Apis /></MudExpansionPanel>
+            <MudExpansionPanel Text="Custom Data"><CustomData /></MudExpansionPanel>
+            <MudExpansionPanel Text="Properties"><Properties /></MudExpansionPanel>
+        </MudExpansionPanels>
+    }
+    
 </MudStack>

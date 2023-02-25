@@ -3,22 +3,25 @@
 @using IdpConfigurer.Business;
 
 <MudText Typo="Typo.h3">Identity Providers</MudText>
-<MudStack>
-    <MudExpansionPanels>
-        <MudExpansionPanel Text = "Add Provider">
-            <MudStack>
-                <MudTextField @bind-Value="ViewController.NameToNewIdp" Label="Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                <MudTextField @bind-Value="ViewController.UriToNewIdp" Label="URI" Variant="Variant.Outlined" Margin="Margin.Dense" />
-                <MudButton OnClick="ViewController.CreateIdpAsync">Add</MudButton>
-            </MudStack>
-        </MudExpansionPanel>
-    </MudExpansionPanels>
-    <MudList>
-        @foreach (var idp in ViewController.Idps)
-        {
-            <MudListItem>
-                <MudLink Href="@idp.PageUri()">@idp.Name</MudLink>
-            </MudListItem>
-        }
-    </MudList>
-</MudStack>
+@if (ViewController.Idps != null)
+{
+    <MudStack>
+        <MudExpansionPanels>
+            <MudExpansionPanel Text = "Add Provider">
+                <MudStack>
+                    <MudTextField @bind-Value="ViewController.NameToNewIdp" Label="Name" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudTextField @bind-Value="ViewController.UriToNewIdp" Label="URI" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                    <MudButton OnClick="ViewController.CreateIdpAsync">Add</MudButton>
+                </MudStack>
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+        <MudList>
+            @foreach (var idp in ViewController.Idps)
+            {
+                <MudListItem>
+                    <MudLink Href="@idp.PageUri()">@idp.Name</MudLink>
+                </MudListItem>
+            }
+        </MudList>
+    </MudStack>    
+}

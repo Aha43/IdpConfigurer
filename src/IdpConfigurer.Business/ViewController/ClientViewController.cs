@@ -32,16 +32,20 @@ public partial class ClientViewController
     public async Task LoadAsync(string idpName, string clientId) => await LoadAsync(idpName, clientId, default).ConfigureAwait(false);
     public async Task LoadAsync(string idpName, string clientId, CancellationToken cancellationToken)
     {
+        Client = null;
+
         IdpName = idpName;
 
         var readClientParam = new ReadClientParam { IdpName = idpName, ClientId = clientId };
-        Client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
+        var client = await _clientApi.ReadClientAsync(readClientParam, cancellationToken).ConfigureAwait(false);
 
-        SetSettings(Client);
+        SetSettings(client);
 
-        await LoadApiScopes(idpName, Client, cancellationToken).ConfigureAwait(false);
+        await LoadApiScopes(idpName, client, cancellationToken).ConfigureAwait(false);
 
-        SetGrantsFlows(Client);
+        SetGrantsFlows(client);
+
+        Client = client;
     }
 
     private async Task UpdateClient() => await UpdateClient(default).ConfigureAwait(false);

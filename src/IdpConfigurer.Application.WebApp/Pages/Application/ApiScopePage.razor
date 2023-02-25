@@ -8,9 +8,9 @@
     {
         <MudText Typo="Typo.h5">Api Scope Deleted</MudText>
     }
-    else
+    else if (ViewController.ApiScope != null)
     {
-        <MudText Typo="Typo.h5">@ViewController.ApiScope?.Name</MudText>
+        <MudText Typo="Typo.h5">@ViewController.ApiScope.Name</MudText>
         <MudExpansionPanels>
             <MudExpansionPanel Text="Clients">
                 <MudList>
