@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Infrastructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{A64B226B-80A7-4647-9355-E1D4486024FC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Application.WebApi", "src\IdpConfigurer.Application.WebApi\IdpConfigurer.Application.WebApi.csproj", "{176B60E8-4D1D-4CED-A557-E9DD12939313}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{52148F8F-AFA9-490C-8904-F5EEAE5E7498}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52148F8F-AFA9-490C-8904-F5EEAE5E7498}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52148F8F-AFA9-490C-8904-F5EEAE5E7498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{176B60E8-4D1D-4CED-A557-E9DD12939313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176B60E8-4D1D-4CED-A557-E9DD12939313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176B60E8-4D1D-4CED-A557-E9DD12939313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176B60E8-4D1D-4CED-A557-E9DD12939313}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{67866C75-10B3-4F7F-9604-51D4B847B50E} = {C8002919-59CC-4B9B-ACEF-8333371B90F5}
 		{52148F8F-AFA9-490C-8904-F5EEAE5E7498} = {A64B226B-80A7-4647-9355-E1D4486024FC}
 		{A64B226B-80A7-4647-9355-E1D4486024FC} = {C8002919-59CC-4B9B-ACEF-8333371B90F5}
+		{176B60E8-4D1D-4CED-A557-E9DD12939313} = {67866C75-10B3-4F7F-9604-51D4B847B50E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {100ABF6B-9F91-4E93-81B9-4E3F79F3B1A7}
