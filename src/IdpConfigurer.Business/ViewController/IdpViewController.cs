@@ -4,7 +4,6 @@ using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Specification.Api;
-using System.Threading;
 
 namespace IdpConfigurer.Business.ViewController
 {
@@ -44,7 +43,8 @@ namespace IdpConfigurer.Business.ViewController
             Idp = null;
 
             var readIdParam = new ReadIdpParam { Name = name };
-            var idp = await _idpApi.ReadIdpAsync(readIdParam, cancellationToken).ConfigureAwait(false);
+            var idps = await _idpApi.ReadIdpAsync(readIdParam, cancellationToken).ConfigureAwait(false);
+            var idp = idps.FirstOrDefault();
 
             if (idp != null) 
             {

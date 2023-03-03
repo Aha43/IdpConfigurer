@@ -39,7 +39,7 @@ namespace IdpConfigurer.Infrastructure.Db
             await con.ExecuteAsync("idpc.DeleteIdp", dp, commandType: System.Data.CommandType.StoredProcedure);
         }
 
-        public async Task<Idp> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Idp>> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken)
         {
             var con = _connectionProvider.Connection();
 
@@ -47,8 +47,7 @@ namespace IdpConfigurer.Infrastructure.Db
             dp.Add("@Name", param.Name);
 
             var result = await con.QueryAsync<IdpDbo>("idpc.ReadIdp", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
-            var retDbo = result.First();
-            var retVal = retDbo.ToDto();
+            var retVal = result.Select(e => e.ToDto());
             return retVal;
         }
 

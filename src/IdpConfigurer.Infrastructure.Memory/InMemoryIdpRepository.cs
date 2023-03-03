@@ -39,10 +39,10 @@ namespace IdpConfigurer.Infrastructure.Memory
 
         public Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken) => Task.FromResult(_idps.Values.AsEnumerable());
 
-        public Task<Idp> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken)
+        public Task<IEnumerable<Idp>> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken)
         {
-            if (_idps.TryGetValue(param.Name, out Idp? idp)) return Task.FromResult(idp);
-            throw new ArgumentException($"No Idp named '{param.Name}'");
+            if (_idps.TryGetValue(param.Name, out Idp? idp)) return Task.FromResult(new List<Idp> { idp }.AsEnumerable());
+            return Task.FromResult(Enumerable.Empty<Idp>());
         }
 
         public Task<Idp> UpdateIdpAsync(UpdateIdpParam param, CancellationToken cancellationToken)
