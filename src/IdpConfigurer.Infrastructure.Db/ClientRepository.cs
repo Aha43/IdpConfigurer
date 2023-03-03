@@ -41,7 +41,7 @@ public class ClientRepository : IClientApi
         await con.ExecuteAsync("idpc.DeleteClient", dp, commandType: System.Data.CommandType.StoredProcedure);
     }
 
-    public async Task<Client> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)
+    public async Task<IEnumerable<Client>> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)
     {
         using var con = _connectionProvider.Connection();
 
@@ -50,8 +50,7 @@ public class ClientRepository : IClientApi
         dp.Add("@clientId", param.ClientId);
 
         var result = await con.QueryAsync<ClientDbo>("idpc.ReadClient", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
-        var retDbo = result.First();
-        var retVal = retDbo.ToDto();
+        var retVal = result.Select(e => e.ToDto());
         return retVal;
     }
 

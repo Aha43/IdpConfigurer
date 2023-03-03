@@ -34,7 +34,8 @@ namespace IdpConfigurer.Business.ViewController
             IdpName = idpName;
 
             var readApiScopeParam = new ReadApiScopeParam { IdpName = idpName, Name = apiName };
-            var apiScope = await _apiScopeApi.ReadApiScopeAsync(readApiScopeParam, cancellationToken).ConfigureAwait(false);
+            var apiScopes = await _apiScopeApi.ReadApiScopeAsync(readApiScopeParam, cancellationToken).ConfigureAwait(false);
+            var apiScope = apiScopes.FirstOrDefault();
 
             var readClientsParam = new ReadClientsParam { IdpName = idpName };
             var clients = await _clientApi.ReadClientsAsync(readClientsParam, cancellationToken).ConfigureAwait(false);

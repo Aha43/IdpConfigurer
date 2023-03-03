@@ -8,7 +8,6 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGroup("/idp")
-    .MapIdpApi();
+app.MapIdpProviderApis();
 
 app.Run();

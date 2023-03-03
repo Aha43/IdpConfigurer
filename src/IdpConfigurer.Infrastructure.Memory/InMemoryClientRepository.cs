@@ -32,15 +32,12 @@ namespace IdpConfigurer.Infrastructure.Memory
             return Task.CompletedTask;
         }
 
-        public Task<Client> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)
+        public Task<IEnumerable<Client>> ReadClientAsync(ReadClientParam param, CancellationToken cancellationToken)
         {
             var key = new ClientKey(param);
-            if (_clients.TryGetValue(key, out Client? client))
-            {
-                return Task.FromResult(client);
-            }
+            if (_clients.TryGetValue(key, out Client? client)) return Task.FromResult(new List<Client> { client }.AsEnumerable());
 
-            throw new ArgumentException($"Client does not exist for key: '{key}'");
+            return Task.FromResult(Enumerable.Empty<Client>());
         }
 
         public Task<IEnumerable<Client>> ReadClientsAsync(ReadClientsParam param, CancellationToken cancellationToken)

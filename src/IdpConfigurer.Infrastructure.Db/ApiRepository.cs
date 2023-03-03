@@ -35,7 +35,7 @@ public class ApiScopeRepository : IApiScopeApi
         await con.ExecuteAsync("idpc.DeleteApi", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
     }
 
-    public async Task<ApiScope> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ApiScope>> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken)
     {
         using var con = _connectionProvider.Connection();
 
@@ -43,8 +43,8 @@ public class ApiScopeRepository : IApiScopeApi
         dp.Add("@IdpName", param.IdpName);
         dp.Add("@Name", param.Name);
 
-        var result = await con.QueryAsync<ApiScope>("idpc.ReadApi", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
-        return result.First();
+        var retVal = await con.QueryAsync<ApiScope>("idpc.ReadApi", dp, commandType: System.Data.CommandType.StoredProcedure).ConfigureAwait(false);
+        return retVal;
     }
 
     public async Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam param, CancellationToken cancellationToken)

@@ -32,15 +32,12 @@ public class InMemoryApiScopeApi : IApiScopeApi
         return Task.CompletedTask;
     }
 
-    public Task<ApiScope> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken)
+    public Task<IEnumerable<ApiScope>> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken)
     {
         var key = new ApiScopeKey(param);
-        if (_scopes.TryGetValue(key, out ApiScope? apiScope))
-        {
-            return Task.FromResult(apiScope);
-        }
+        if (_scopes.TryGetValue(key, out ApiScope? apiScope)) return Task.FromResult(new List<ApiScope> { apiScope }.AsEnumerable());
 
-        throw new ArgumentException($"ApiScope does not exist for key: '{key}'");
+        return Task.FromResult(Enumerable.Empty<ApiScope>());
     }
 
     public Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam param, CancellationToken cancellationToken)
