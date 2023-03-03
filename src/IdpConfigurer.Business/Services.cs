@@ -29,13 +29,13 @@ public static class Services
     private static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) 
     {
         var api = configuration["Infrastructure"];
-        api = (api == null) ? "memory" : api;
-        switch (api) 
+        api ??= "memory";
+        return api switch
         {
-            case "memory": return services.AddInMemoryApis();
-            case "db": return services.AddDbInfrastructure(configuration);
-            default: throw new ArgumentException($"Unknown infrastructure '{api}'");
-        }
+            "memory" => services.AddInMemoryApis(),
+            "db" => services.AddDbInfrastructure(configuration),
+            _ => throw new ArgumentException($"Unknown infrastructure '{api}'"),
+        };
     }  
 
     private static IServiceCollection AddViewControllers(this IServiceCollection services)
