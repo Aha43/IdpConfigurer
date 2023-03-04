@@ -1,4 +1,5 @@
 ﻿using IdpConfigurer.Domain;
+using IdpConfigurer.Domain.Param.ApiScope;
 using IdpConfigurer.Domain.Param.Client;
 using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Specification.Api;
@@ -16,10 +17,10 @@ public class IdpWebApiClient : HttpClientApiBase<Idp>, IIdpApi
         await DoDeleteAsync($"delete/{p.Name}", ct).ConfigureAwait(false);
 
     public async Task<IEnumerable<Idp>> ReadIdpAsync(ReadIdpParam p, CancellationToken ct) => 
-        await DoReadAsync($"{p.Name}", ct).ConfigureAwait(false);
+        await DoGetAsync($"{p.Name}", ct).ConfigureAwait(false);
 
     public async Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken ct) => 
-        await DoReadAsync(ct).ConfigureAwait(false);
+        await DoGetAsync(ct).ConfigureAwait(false);
 
     public async Task<Idp> UpdateIdpAsync(UpdateIdpParam p, CancellationToken ct) => 
         await DoPutAsync("update", p, ct).ConfigureAwait(false);
@@ -28,30 +29,44 @@ public class IdpWebApiClient : HttpClientApiBase<Idp>, IIdpApi
 
 public class ClientWebApiClient : HttpClientApiBase<Client>, IClientApi
 {
-    public ClientWebApiClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
-    {
-    }
+    public ClientWebApiClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
 
     public async Task<Client> CreateClientAsync(CreateClientParam p, CancellationToken ct) =>
         await DoPostAsync(p, ct).ConfigureAwait(false);
 
-    public Task DeleteClientAsync(DeleteClientParam p, CancellationToken ct)
+    public async Task DeleteClientAsync(DeleteClientParam p, CancellationToken ct) => 
+        await DoDeleteAsync($"delete/{p.IdpName}/{p.ClientId}", ct).ConfigureAwait(false);
+
+    public async Task<IEnumerable<Client>> ReadClientAsync(ReadClientParam p, CancellationToken ct) => 
+        await DoGetAsync($"{p.IdpName}/{p.ClientId}", ct).ConfigureAwait(false);
+
+    public async Task<IEnumerable<Client>> ReadClientsAsync(ReadClientsParam p, CancellationToken ct) => 
+        await DoGetAsync($"{p.IdpName}", ct).ConfigureAwait(false);
+
+    public async Task<Client> UpdateClientAsync(UpdateClientParam p, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        return await DoPutAsync("update", p, ct).ConfigureAwait(false);
     }
 
-    public Task<IEnumerable<Client>> ReadClientAsync(ReadClientParam p, CancellationToken ct)
-    {
-        throw new NotImplementedException();
-    }
+}
 
-    public Task<IEnumerable<Client>> ReadClientsAsync(ReadClientsParam p, CancellationToken ct)
-    {
-        throw new NotImplementedException();
-    }
+public class ApiScopeWebApiClient : HttpClientApiBase<ApiScope>, IApiScopeApi
+{
+    public ApiScopeWebApiClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
 
-    public Task<Client> UpdateClientAsync(UpdateClientParam p, CancellationToken ct)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam p, CancellationToken ct) => 
+        await DoPostAsync(p, ct).ConfigureAwait(false);
+
+    public async Task DeleteApiScopeAsync(DeleteApiScopeParam p, CancellationToken ct) => 
+        await DoDeleteAsync($"delete/{p.IdpName}/{p.Name}", ct).ConfigureAwait(false);
+
+    public async Task<IEnumerable<ApiScope>> ReadApiScopeAsync(ReadApiScopeParam p, CancellationToken ct)
+        => await DoGetAsync($"{p.IdpName}/{p.Name}", ct).ConfigureAwait(false);
+
+    public async Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam p, CancellationToken ct)
+        => await DoGetAsync($"{p.IdpName}", ct).ConfigureAwait(false);
+
+    public async Task<ApiScope> UpdateApiScopeAsync(UpdateApiScopeParam p, CancellationToken ct) => 
+        await DoPutAsync("update", p, ct).ConfigureAwait(false);
+
 }

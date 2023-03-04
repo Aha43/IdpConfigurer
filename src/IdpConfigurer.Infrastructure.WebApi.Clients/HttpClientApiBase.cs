@@ -28,10 +28,10 @@ public abstract class HttpClientApiBase<T> where T : class
         res.EnsureSuccessStatusCode();
     }
 
-    protected async Task<IEnumerable<T>> DoReadAsync(CancellationToken ct)
-        => await DoReadAsync(string.Empty, ct).ConfigureAwait(false);
+    protected async Task<IEnumerable<T>> DoGetAsync(CancellationToken ct)
+        => await DoGetAsync(string.Empty, ct).ConfigureAwait(false);
 
-    protected async Task<IEnumerable<T>> DoReadAsync(string uri, CancellationToken ct)
+    protected async Task<IEnumerable<T>> DoGetAsync(string uri, CancellationToken ct)
     {
         var httpClient = GetHttpClient();
         using var res = await httpClient.GetAsync(uri, ct).ConfigureAwait(false);
