@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Application.WebApi", "src\IdpConfigurer.Application.WebApi\IdpConfigurer.Application.WebApi.csproj", "{176B60E8-4D1D-4CED-A557-E9DD12939313}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Infrastructure.WebApi.Client", "src\IdpConfigurer.Infrastructure.WebApi.Client\IdpConfigurer.Infrastructure.WebApi.Client.csproj", "{BF0B4B42-0E58-46D9-A45C-3C7880C5BEDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Infrastructure.WebApi.Clients", "src\IdpConfigurer.Infrastructure.WebApi.Clients\IdpConfigurer.Infrastructure.WebApi.Clients.csproj", "{BF0B4B42-0E58-46D9-A45C-3C7880C5BEDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

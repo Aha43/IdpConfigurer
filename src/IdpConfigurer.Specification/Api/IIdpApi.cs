@@ -5,9 +5,9 @@ namespace IdpConfigurer.Specification.Api;
 
 public interface IIdpApi
 {
-    Task<Idp> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken);
-    Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken cancellationToken);
-    Task<IEnumerable<Idp>> ReadIdpAsync(ReadIdpParam param, CancellationToken cancellationToken);
-    Task<Idp> UpdateIdpAsync(UpdateIdpParam idp, CancellationToken cancellationToken);
-    Task DeleteIdpAsync(DeleteIdpParam param, CancellationToken cancellationToken);
+    Task<Idp> CreateIdpAsync(CreateIdpParam p, CancellationToken ct);
+    Task<IEnumerable<Idp>> ReadIdpsAsync(CancellationToken ct);
+    Task<IEnumerable<Idp>> ReadIdpAsync(ReadIdpParam p, CancellationToken ct);
+    Task<Idp> UpdateIdpAsync(UpdateIdpParam p, CancellationToken ct);
+    Task DeleteIdpAsync(DeleteIdpParam p, CancellationToken ct);
 }

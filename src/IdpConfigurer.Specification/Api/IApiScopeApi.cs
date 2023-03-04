@@ -5,9 +5,9 @@ namespace IdpConfigurer.Specification.Api;
 
 public interface IApiScopeApi
 {
-    Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam param, CancellationToken cancellationToken);
-    Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam param, CancellationToken cancellationToken);
-    Task<IEnumerable<ApiScope>> ReadApiScopeAsync(ReadApiScopeParam param, CancellationToken cancellationToken);
-    Task<ApiScope> UpdateApiScopeAsync(UpdateApiScopeParam param, CancellationToken cancellationToken);
-    Task DeleteApiScopeAsync(DeleteApiScopeParam param, CancellationToken cancellationToken);
+    Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam p, CancellationToken ct);
+    Task<IEnumerable<ApiScope>> ReadApiScopesAsync(ReadApiScopesParam p, CancellationToken ct);
+    Task<IEnumerable<ApiScope>> ReadApiScopeAsync(ReadApiScopeParam p, CancellationToken ct);
+    Task<ApiScope> UpdateApiScopeAsync(UpdateApiScopeParam p, CancellationToken ct);
+    Task DeleteApiScopeAsync(DeleteApiScopeParam p, CancellationToken ct);
 }
