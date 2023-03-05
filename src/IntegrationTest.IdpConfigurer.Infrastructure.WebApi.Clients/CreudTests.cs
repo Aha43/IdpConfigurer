@@ -1,6 +1,7 @@
 ﻿using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Infrastructure.WebApi.Clients;
 using IdpConfigurer.Specification.Api;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,8 @@ namespace IntegrationTest.IdpConfigurer.Infrastructure.WebApi.Clients
 {
     public class CreudTests
     {
+        private readonly WebApplicationFactory<Program> _webApplicationFactory = new WebApplicationFactory<Program>();
+
         private static IServiceProvider Configure()
         {
             var configuration = new ConfigurationBuilder()

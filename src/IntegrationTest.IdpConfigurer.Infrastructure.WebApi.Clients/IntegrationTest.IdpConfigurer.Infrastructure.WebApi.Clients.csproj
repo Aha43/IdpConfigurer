@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
@@ -24,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IdpConfigurer.Application.WebApi\IdpConfigurer.Application.WebApi.csproj" />
     <ProjectReference Include="..\IdpConfigurer.Domain\IdpConfigurer.Domain.csproj" />
     <ProjectReference Include="..\IdpConfigurer.Infrastructure.WebApi.Clients\IdpConfigurer.Infrastructure.WebApi.Clients.csproj" />
     <ProjectReference Include="..\IdpConfigurer.Specification\IdpConfigurer.Specification.csproj" />
