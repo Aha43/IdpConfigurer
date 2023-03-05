@@ -6,9 +6,9 @@ using IdpConfigurer.Specification.Api;
 
 namespace IdpConfigurer.Infrastructure.WebApi.Clients;
 
-public class IdpWebApiClient : HttpClientApiBase<Idp>, IIdpApi
+public class IdpWebApiClient : TypedHttpClientApiBase<Idp>, IIdpApi
 {
-    public IdpWebApiClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
+    public IdpWebApiClient(HttpClient httpClient) : base(httpClient) { }
 
     public async Task<Idp> CreateIdpAsync(CreateIdpParam p, CancellationToken ct) => 
         await PostAsync(p, ct).ConfigureAwait(false);
@@ -26,9 +26,9 @@ public class IdpWebApiClient : HttpClientApiBase<Idp>, IIdpApi
         await PutAsync(p, ct).ConfigureAwait(false);
 }
 
-public class ClientWebApiClient : HttpClientApiBase<Client>, IClientApi
+public class ClientWebApiClient : TypedHttpClientApiBase<Client>, IClientApi
 {
-    public ClientWebApiClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
+    public ClientWebApiClient(HttpClient httpClient) : base(httpClient) { }
 
     public async Task<Client> CreateClientAsync(CreateClientParam p, CancellationToken ct) =>
         await PostAsync(p, ct).ConfigureAwait(false);
@@ -46,9 +46,9 @@ public class ClientWebApiClient : HttpClientApiBase<Client>, IClientApi
         await PutAsync(p, ct).ConfigureAwait(false);
 }
 
-public class ApiScopeWebApiClient : HttpClientApiBase<ApiScope>, IApiScopeApi
+public class ApiScopeWebApiClient : TypedHttpClientApiBase<ApiScope>, IApiScopeApi
 {
-    public ApiScopeWebApiClient(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
+    public ApiScopeWebApiClient(HttpClient httpClient) : base(httpClient) { }
 
     public async Task<ApiScope> CreateApiScopeAsync(CreateApiScopeParam p, CancellationToken ct) => 
         await PostAsync(p, ct).ConfigureAwait(false);

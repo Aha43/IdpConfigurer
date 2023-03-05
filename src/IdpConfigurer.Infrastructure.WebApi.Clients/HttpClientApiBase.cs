@@ -4,10 +4,7 @@ namespace IdpConfigurer.Infrastructure.WebApi.Clients;
 
 public abstract class HttpClientApiBase<T> where T : class
 {
-    protected readonly IHttpClientFactory _httpClientFactory;
-
-    protected HttpClientApiBase(IHttpClientFactory httpClientFactory) => 
-        _httpClientFactory = httpClientFactory;
+    protected abstract HttpClient GetHttpClient();
 
     protected async Task<T> PostAsync<P>(P p, CancellationToken ct) where P : class =>
         await PostAsync(string.Empty, p, ct).ConfigureAwait(false);
@@ -42,7 +39,7 @@ public abstract class HttpClientApiBase<T> where T : class
         return retVal;
     }
 
-    protected async Task<T> PutAsync<P>(P p, CancellationToken ct) where P : class => 
+    protected async Task<T> PutAsync<P>(P p, CancellationToken ct) where P : class =>
         await PutAsync(string.Empty, p, ct).ConfigureAwait(false);
 
     protected async Task<T> PutAsync<P>(string uri, P p, CancellationToken ct) where P : class
@@ -55,7 +52,25 @@ public abstract class HttpClientApiBase<T> where T : class
         return retVal;
     }
 
-    private HttpClient GetHttpClient() => 
-        _httpClientFactory.CreateClient(GetType().Name);
+}
 
+public abstract class NamedHttpClientApiBase<T> : HttpClientApiBase<T> where T : class
+{
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    protected NamedHttpClientApiBase(IHttpClientFactory httpClientFactory) => 
+        _httpClientFactory = httpClientFactory;
+
+    protected override HttpClient GetHttpClient() => 
+        _httpClientFactory.CreateClient(GetType().Name);
+}
+
+public abstract class TypedHttpClientApiBase<T> : HttpClientApiBase<T> where T : class
+{
+    private readonly HttpClient _httpClient;
+
+    protected TypedHttpClientApiBase(HttpClient httpClient) => 
+        _httpClient = httpClient;
+
+    protected override HttpClient GetHttpClient() => _httpClient;
 }

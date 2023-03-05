@@ -25,17 +25,17 @@ namespace IdpConfigurer.Infrastructure.WebApi.Clients
             var config = configuration.GetRequiredSectionAs<IdpConfigurerWebApiClientsConfiguration>();
             var baseUri = new Uri(config.BaseUri);
 
-            services.AddHttpClient(nameof(IdpWebApiClient), o => 
+            services.AddHttpClient<IdpWebApiClient>(o => 
             {
                 o.BaseAddress = new Uri(baseUri, "idp");
             });
 
-            services.AddHttpClient(nameof(ClientWebApiClient), o =>
+            services.AddHttpClient<ClientWebApiClient>(o =>
             {
                 o.BaseAddress = new Uri(baseUri, "client");
             });
 
-            services.AddHttpClient(nameof(ApiScopeWebApiClient), o =>
+            services.AddHttpClient<ApiScopeWebApiClient>(o =>
             {
                 o.BaseAddress = new Uri(baseUri, "apiscope");
             });
