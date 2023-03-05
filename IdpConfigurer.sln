@@ -21,11 +21,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IdpConfigurerDb", "sql\IdpC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{A5C6A924-2F10-4314-9D5B-4B0B2671E333}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{67866C75-10B3-4F7F-9604-51D4B847B50E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20 application", "20 application", "{67866C75-10B3-4F7F-9604-51D4B847B50E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Infrastructure.Db", "src\IdpConfigurer.Infrastructure.Db\IdpConfigurer.Infrastructure.Db.csproj", "{52148F8F-AFA9-490C-8904-F5EEAE5E7498}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{A64B226B-80A7-4647-9355-E1D4486024FC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30 infrastructure", "30 infrastructure", "{A64B226B-80A7-4647-9355-E1D4486024FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Application.WebApi", "src\IdpConfigurer.Application.WebApi\IdpConfigurer.Application.WebApi.csproj", "{176B60E8-4D1D-4CED-A557-E9DD12939313}"
 EndProject
@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdpConfigurer.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTest.IdpConfigurer.Infrastructure.WebApi.Clients", "src\IntegrationTest.IdpConfigurer.Infrastructure.WebApi.Clients\IntegrationTest.IdpConfigurer.Infrastructure.WebApi.Clients.csproj", "{7289B64E-46B2-4CB6-97DE-AEBA9A260652}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0CAC3CD3-2713-4ABE-AD06-04A405B97337}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10 test", "10 test", "{0CAC3CD3-2713-4ABE-AD06-04A405B97337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

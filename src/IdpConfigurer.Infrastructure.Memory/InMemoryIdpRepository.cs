@@ -1,19 +1,12 @@
 ﻿using IdpConfigurer.Domain;
 using IdpConfigurer.Domain.Param.Idp;
 using IdpConfigurer.Specification.Api;
-using System.Runtime.Intrinsics.Arm;
 
 namespace IdpConfigurer.Infrastructure.Memory
 {
     public class InMemoryIdpRepository : IIdpApi
     {
         private readonly Dictionary<string, Idp> _idps = new();
-
-        public InMemoryIdpRepository()
-        {
-            AddIdp(new Idp { Name = "TestIdp1", Uri = "https://TestIdp1" }).
-            AddIdp(new Idp { Name = "TestIdp2", Uri = "https://TestIdp2" });
-        }
 
         public Task<Idp> CreateIdpAsync(CreateIdpParam param, CancellationToken cancellationToken)
         {

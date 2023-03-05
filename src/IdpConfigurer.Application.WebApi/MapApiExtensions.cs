@@ -24,12 +24,12 @@ public static class MapApiExtensions
         g.MapGet("/{name}", async (IIdpApi api, [AsParameters] ReadIdpParam p, CancellationToken ct) => 
             await api.ReadIdpAsync(p, ct));
 
-        g.MapPost("/create", async (IIdpApi api, [FromBody] CreateIdpParam p, CancellationToken ct) => 
+        g.MapPost("/", async (IIdpApi api, [FromBody] CreateIdpParam p, CancellationToken ct) => 
             await api.CreateIdpAsync(p, ct));
 
-        g.MapPut("/update", async (IIdpApi api, [FromBody] UpdateIdpParam p, CancellationToken ct) => await api.UpdateIdpAsync(p, ct));
+        g.MapPut("/", async (IIdpApi api, [FromBody] UpdateIdpParam p, CancellationToken ct) => await api.UpdateIdpAsync(p, ct));
 
-        g.MapDelete("/delete/{name}", async (IIdpApi api, [AsParameters] DeleteIdpParam p, CancellationToken ct) => await api.DeleteIdpAsync(p, ct));
+        g.MapDelete("/{name}", async (IIdpApi api, [AsParameters] DeleteIdpParam p, CancellationToken ct) => await api.DeleteIdpAsync(p, ct));
 
         return g;
     }
@@ -42,13 +42,13 @@ public static class MapApiExtensions
         g.MapGet("/{idpname}/{clientid}", async (IClientApi api, [AsParameters] ReadClientParam p, CancellationToken ct) => 
             await api.ReadClientAsync(p, ct));
 
-        g.MapPost("/create", async (IClientApi api, [FromBody] CreateClientParam p, CancellationToken ct) => 
+        g.MapPost("/", async (IClientApi api, [FromBody] CreateClientParam p, CancellationToken ct) => 
             await api.CreateClientAsync(p, ct));
 
-        g.MapPut("/update", async (IClientApi api, [FromBody] UpdateClientParam p, CancellationToken ct) => 
+        g.MapPut("/", async (IClientApi api, [FromBody] UpdateClientParam p, CancellationToken ct) => 
             await api.UpdateClientAsync(p, ct));
 
-        g.MapDelete("/delete/{idpname}/{clientid}", async (IClientApi api, [AsParameters] DeleteClientParam p, CancellationToken ct) => 
+        g.MapDelete("/{idpname}/{clientid}", async (IClientApi api, [AsParameters] DeleteClientParam p, CancellationToken ct) => 
             await api.DeleteClientAsync(p, ct));
 
         return g;
@@ -62,13 +62,13 @@ public static class MapApiExtensions
         g.MapGet("/{idpname}/{name}", async (IApiScopeApi api, [AsParameters] ReadApiScopeParam p, CancellationToken ct) =>
             await api.ReadApiScopeAsync(p, ct));
 
-        g.MapPost("/create", async (IApiScopeApi api, [FromBody] CreateApiScopeParam p, CancellationToken ct) =>
+        g.MapPost("/", async (IApiScopeApi api, [FromBody] CreateApiScopeParam p, CancellationToken ct) =>
             await api.CreateApiScopeAsync(p, ct));
 
-        g.MapPut("/update", async (IApiScopeApi api, [FromBody] UpdateApiScopeParam p, CancellationToken ct) =>
+        g.MapPut("/", async (IApiScopeApi api, [FromBody] UpdateApiScopeParam p, CancellationToken ct) =>
             await api.UpdateApiScopeAsync(p, ct));
 
-        g.MapDelete("/delete/{idpname}/{name}", async (IApiScopeApi api, [AsParameters] DeleteApiScopeParam p, CancellationToken ct) =>
+        g.MapDelete("/{idpname}/{name}", async (IApiScopeApi api, [AsParameters] DeleteApiScopeParam p, CancellationToken ct) =>
             await api.DeleteApiScopeAsync(p, ct));
 
         return g;
