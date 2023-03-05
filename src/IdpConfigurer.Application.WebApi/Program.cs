@@ -11,3 +11,5 @@ app.MapGet("/", () => "Hello World!");
 app.MapIdpProviderApis();
 
 app.Run();
+
+public partial class Program { }
