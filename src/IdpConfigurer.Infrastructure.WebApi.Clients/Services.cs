@@ -9,8 +9,8 @@ namespace IdpConfigurer.Infrastructure.WebApi.Clients
     {
         public static IServiceCollection AddIdpConfigurerWebApiClients(this IServiceCollection services, IConfiguration configuration)
         {
-            return services.AddApis()
-                .ConfigureHttpClients(configuration);
+            return //services.AddApis()
+                services.ConfigureHttpClients(configuration);
         }
 
         private static IServiceCollection AddApis(this IServiceCollection services)
@@ -25,7 +25,7 @@ namespace IdpConfigurer.Infrastructure.WebApi.Clients
             var config = configuration.GetRequiredSectionAs<IdpConfigurerWebApiClientsConfiguration>();
             var baseUri = new Uri(config.BaseUri);
 
-            services.AddHttpClient<IdpWebApiClient>(o => 
+            services.AddHttpClient<IIdpApi>(o => 
             {
                 o.BaseAddress = new Uri(baseUri, "idp");
             });

@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Json;
 
 namespace IdpConfigurer.Infrastructure.WebApi.Clients;
 
@@ -62,7 +63,23 @@ public abstract class NamedHttpClientApiBase<T> : HttpClientApiBase<T> where T :
         _httpClientFactory = httpClientFactory;
 
     protected override HttpClient GetHttpClient() => 
-        _httpClientFactory.CreateClient(GetType().Name);
+        _httpClientFactory.CreateClient(GetName());
+
+    protected virtual string GetName() => GetType().Name;
+}
+
+public static class ExtensionMethods
+{
+    public static IServiceCollection AddNamedHttpClient<T>(this IServiceCollection services, Action<HttpClient>? c, string? name = null) where T : class
+    {
+        name = string.IsNullOrEmpty(name) ? typeof(T).Name : name.Trim();
+        if (c == null) 
+            services.AddHttpClient(name);
+        else
+            services.AddHttpClient(name, c);
+        return services;
+    }
+
 }
 
 public abstract class TypedHttpClientApiBase<T> : HttpClientApiBase<T> where T : class
